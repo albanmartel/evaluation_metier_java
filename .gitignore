@@ -4,6 +4,8 @@ target/
 .settings/
 .classpath
 .project
+.env
+*env.*properties
 
 # Java
 *.class
