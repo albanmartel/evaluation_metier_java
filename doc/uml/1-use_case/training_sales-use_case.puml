@@ -39,6 +39,12 @@ rectangle Vente_de_formations {
   note bottom of UC4
   - Utilisateur : ajouter ou retirer un client
   end note  
+  
+  note bottom of UC5
+  - Administrateur : Le cas d'utilisation est juste évoqué. 
+  Il semble évident qu'il y en a au moins. Dans l'immédiat, il  ne sera pas traiter dans l'implémentation.
+ .
+  end note
 }
 
 /'
