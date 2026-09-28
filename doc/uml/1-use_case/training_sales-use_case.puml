@@ -1,53 +1,59 @@
-@startuml School
+@startuml Training Sales
 
 left to right direction
+/'
+*--------- Les acteurs ---------*
+'/
+actor Visiteur as av
+actor Utilisateur as cu
+actor Administrateur as za
 
-actor Elève as e
-actor Enseignant as p
-actor Directeur as d
+/'
+*--------- L'héritage ---------*
+'/
 
-e <|-right- p
-p <|-right- d
+av <|-right- cu
 
-rectangle Ecole {
-  usecase "Afficher la liste\ndes cours et\nleur enseignant" as UC1
-  
-  note bottom of UC1
-  - élève : qu'il suit
-  - enseignant : qu'il enseigne
-  - directeur : tous
-  end note
+/'
+*--------- Les Interactions ---------*
+'/
 
-  note as note_gerer
-  	Gérer les cours, enseignants, élèves, adresses =
-  	créer, voir, modifier*, supprimer
-  	~* les seuls attributs de l'entité concernée
-  end note
+rectangle Vente_de_formations {
+  /'
+	*--------- Les Cas d'utilisation  ---------*
+  '/
+  usecase "Afficher la liste\ndes formations" as UC1
+  usecase "Ouvrir un compte" as UC2
+  usecase "Constituer un panier" as UC3
+  usecase "Passer un commande" as UC4  
+  usecase "Gérer les formations" as UC5
   
-  usecase "Gérer les cours" as UC2
+  /'
+  *---------------Les notes et étiquettes ----------*
+  '/
+  note bottom of UC3
+  - Visiteur : qu'il veut commander
+  - Utilisateur : qu'il commande
+  end note  
   
-  usecase "Gérer la liste\ndes élèves\nsuivant un cours" as UC3
-  UC3 .up.> UC2 : extends
-  
-  usecase "Afficher les élèves\nd'un cours" as UC4
-  UC4 .up.> UC1 : extends
-  
-  usecase "Gérer les enseignants" as UC5
-  
-  usecase "Gérer la liste\ndes cours\nd'un enseignant" as UC6
-  UC6 .up.> UC5 : extends
-  
-  usecase "Gérer les élèves" as UC7
-
-  usecase "Gérer et rattacher\nleurs adresses" as UC8
-  UC8 .up.> UC5 : extends
-  UC8 .up.> UC7 : extends
+  note bottom of UC4
+  - Utilisateur : ajouter ou retirer un client
+  end note  
 }
 
-e -- UC1
+/'
+*--------- Les relations  ---------*
+'/
 
-d -- UC2
-d -- UC5
-d -- UC7
+av -- UC1
+av -- UC2
+cu -- UC3
+cu -- UC4
+za -- UC5
+
+/'
+*--------- Les extends  ---------*
+'/
+UC4 .up.> UC3 : extends
 
 @enduml
