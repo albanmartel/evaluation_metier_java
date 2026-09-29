@@ -58,6 +58,8 @@ public abstract class AbstractDao<T> {
     protected Connection getConnection() throws SQLException {
         if (URL == null || USER == null || PASSWORD == null) {
             throw new SQLException("Les identifiants de connexion n'ont pas été initialisés correctement.");
+        } else {
+            System.out.println("La connexion à la base est fonctionnelle !");
         }
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
@@ -77,5 +79,6 @@ public abstract class AbstractDao<T> {
      * Méthode utilitaire pour convertir un ResultSet en objet Métier (T).
      */
     protected abstract T mapResultSet(ResultSet rs) throws SQLException;
+
 }
 
