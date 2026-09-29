@@ -1,65 +1,56 @@
-@startuml Training Sales
-
+@startuml
 left to right direction
-/'
-*--------- Les acteurs ---------*
-'/
-actor Visiteur as av
-actor Utilisateur as cu
-actor Administrateur as za
 
-/'
-*--------- L'héritage ---------*
-'/
+/' --- ACTEURS --- '/
+actor "Visiteur\n(Non connecté)" as visiteur
+actor "Utilisateur connecté" as utilisateur
 
-av <|-right- cu
+' Alignement vertical : Visiteur en haut
+visiteur <|-- utilisateur
 
-/'
-*--------- Les Interactions ---------*
-'/
 
-rectangle Vente_de_formations {
-  /'
-	*--------- Les Cas d'utilisation  ---------*
-  '/
-  usecase "Afficher la liste\ndes formations" as UC1
-  usecase "Ouvrir un compte" as UC2
-  usecase "Constituer un panier" as UC3
-  usecase "Passer un commande" as UC4  
-  usecase "Gérer les formations" as UC5
-  
-  /'
-  *---------------Les notes et étiquettes ----------*
-  '/
-  note bottom of UC3
-  - Visiteur : qu'il veut commander
-  - Utilisateur : qu'il commande
-  end note  
-  
-  note bottom of UC4
-  - Utilisateur : ajouter ou retirer un client
-  end note  
-  
-  note bottom of UC5
-  - Administrateur : Le cas d'utilisation est juste évoqué. 
-  Il semble évident qu'il y en a au moins. Dans l'immédiat, il  ne sera pas traiter dans l'implémentation.
- .
+rectangle "Application Vente de Formations" {
+
+  usecase "Consulter formations" as UC_Liste
+  note right of UC_Liste
+    Regroupe :
+    - Affichage global
+    - Recherche par mot-clé
+    - Filtrage (Présentiel / Distanciel)
+  end note
+
+  usecase "Gérer panier" as UC_Panier
+  note right of UC_Panier
+    Regroupe :
+    - Créer / Vider le panier
+    - Ajouter / Retirer une formation
+    
+    Règle :
+    - Un panier valide doit contenir 
+      au moins 1 formation pour commander
+  end note
+
+  usecase "Créer compte" as UC_Creer
+  usecase "S'authentifier" as UC_Authentification
+
+  usecase "Passer commande" as UC_Commande
+  note right of UC_Commande
+    Regroupe :
+    - Validation du panier
+    - Ajout du client bénéficiaire
+    
+    Règle :
+    - Toute commande doit être 
+      obligatoirement associée à un client
   end note
 }
 
-/'
-*--------- Les relations  ---------*
-'/
+/' --- RELATIONS ACTEURS <--> CAS D'UTILISATION ---'/
 
-av -- UC1
-av -- UC2
-cu -- UC3
-cu -- UC4
-za -- UC5
+visiteur -- UC_Liste
+visiteur -- UC_Panier
+visiteur -- UC_Creer
 
-/'
-*--------- Les extends  ---------*
-'/
-UC4 .up.> UC3 : extends
-
+utilisateur -- UC_Authentification
+utilisateur -- UC_Commande
 @enduml
