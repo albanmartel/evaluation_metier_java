@@ -94,7 +94,12 @@ public abstract class AbstractDao<T> {
      */
     public abstract boolean update(T entity);
 
-
+    /**
+     * Supprime un objet T par son ID.
+     * @param id en entrée l'identifiant correspondant
+     * au cours ou à la formation à supprimer
+     * @return vrai ou faux en fonction du résultat de l'opération
+     */
     public abstract boolean delete(int id);
 
     /**
