@@ -2,8 +2,11 @@ package fr.alban.dao;
 
 import fr.alban.models.TrainingCourse;
 
+import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +21,26 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
      */
     @Override
     public List<TrainingCourse> findAll() {
-        return List.of();
+        List<TrainingCourse> courses = new ArrayList<>();
+        String sql = "SELECT id_course as idCourse, name_course as nameCourse, " +
+                "description_course as descriptionCourse," +
+                " training_format as TrainingCourse, " +
+                "duration as duration, price as rpice FROM TrainingCourses";
+
+        try (Connection connection = getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                TrainingCourse course = mapResultSet(rs);
+                courses.add(course);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return courses;
     }
 
     /**
@@ -73,6 +95,6 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
      */
     @Override
     protected TrainingCourse mapResultSet(ResultSet rs) throws SQLException {
-        return null;
+        TrainingCourse trainingCourse = new TrainingCourse();
     }
 }
