@@ -1,0 +1,497 @@
+# evaluation_metier_java
+
+Projet de l'Académy Python/JAVA Facylities Multi Services
+
+## Formation Python Java - Evaluation phase business - Application de vende de formations
+
+## Objectif
+
+Expressions des besoins : Votre client souhaite une application de vente de formation !
+
+### 1. Premier temps
+
+Dans un premier temps, l’application doit permettre à tous les utilisateurs non connectés d’afficher toutes les formations disponibles, d’afficher toutes les formations contenant un mot clé, toutes les formations en présentiel ou distanciel.
+
+Une formation est caractérisée par : nom + description + durée en jours + présentiel ou dist + prix
+
+ Exemple : 
+
+```csv
+"Java", 20.00, "Java SE 8: Syntaxe & Poo"
+"Java avancé", 20.00, "Java SE 8: Syntaxe & Poo"
+"Spring", 20.00, "Spring Core/Mvc/Security"
+"Php frameworks", 15.00, "Symphony"
+"C#", 20.00, "DotNet Core"
+"C++", 22.00, "C++ base"
+"C++ avancé", 24.00, "Programmation C++ avec des interfaces graphiques"
+"Python base", 20.00, "Les types natifs, les conditions"
+"python avancé", 25.00, "Exceptions, les threads & Poo"
+"Les bases du réseau", 18.00, "L'ipv4, rj45, le routage"
+"Anglais", 15.00, "Anglais technique, écrire un email, lire de la documentation technique"
+"Technique de recherche d'emploi", 10.00, "Recherche d'emploi, réseaux sociaux, suivi de recherche"
+```
+
+ ### 2. Second temps
+
+ Dans un second temps, il souhaite constituer un panier en ajoutant/retirant des formations avec
+ possibilité de passer commande à tout instant, à condition d’être connecté, sinon il sera orienté vers
+ la création d’un utilisateur (login + password), une commande devra être associée à un client (nom,
+ prénom, email, adresse, tel), un utilisateur peut réaliser plusieurs commandes pour différents clients.
+
+ Le client est à votre disposition pour répondre à vos questions, il est préférable d’en poser un
+ maximum avant de commencer votre projet.
+
+ Contrainte technique : Votre application sera en mode console d’abord mais elle doit être prête à
+ l’intégration dans une web application selon les modalités multi couche vues jusqu’ici.
+
+ L’ensemble des productions attendues (RoadMap) :
+
+     -    Démo
+     -    Diagrammes UML (Cas d’utilisations, classes, séquence)
+     -    Spécifications fonctionnelles
+     -    MCD (Looping), base de données + droit restreint sur celle-ci + Script SQL
+     -    Couche entités conforme aux diagrammes de classes
+     -    Couche Dao (Pattern Dao, Singleton, Factory, Fichier de config) [faites au mieux]
+     -    Couche Business puis Couche application
+     -    Utilisation de Git et de toutes les bonnes pratiques vues depuis le début [Poo,
+          Exceptions/Log, indentation, anglais, lisibilité, javadoc, tests…]
+
+## importer le projet
+
+```
+git clone https://github.com/albanmartel/evaluation_metier_java.git
+```
+
+## Sécuriser la connexion à la base de donnée
+
+Pour sécuriser l'accès à la base de données, il est courant d'utiliser le fichier `env.properties`
+
+Le fichier `env.properties.example` : 
+```txt
+# Fichier d'exemple - Copier sous le nom env.properties et remplir vos accès
+db.url=jdbc:mariadb://localhost:3306/votre_base
+db.user=votre_user
+db.password=votre_mot_de_passe
+db.name=votre_base
+```
+
+Il est à renommer en `env.properties` et à personnaliser avec vos propriétés d'accès à votre base MariaDB.
+
+## Importer le script SQL dans la base de données MariaDB
+
+**L'installation de MariaDb n'est pas abordée dans ce document** mais elle est indispensable.
+Pour que les opérations fonctionnent il faut que le mot de passe MariaDB ne soit pas vide.
+
+### 1. **Windows** Importer depuis PowerShell
+
+```PowerShell
+cd "SQL"
+Get-Content .\Shop.sql | mariadb -u root -p
+```
+
+### 1. **Linux** Importer depuis bash
+
+```bash
+cd "SQL"
+mariadb -u root -p < Shop.sql
+```
+
+## Exécuter le projet 
+
+*Nécessite l'installation d'`Apache Maven`*
+
+Compilez le projet :
+
+```powershell
+mvn compile
+```
+
+Exécutez la classe avec Maven :
+
+```powershell
+mvn exec:java
+```
+
+## Comment a été construit le projet
+
+### 1. Installation de maven (sans droits administatrateur)
+
+#### 1.0 Télécharger
+
+[Télécharger Maven](https://maven.apache.org/download.cgi)
+
+#### 1.1 Décompresser
+
+Décompresser `apache-maven-3.9.16-bin.zip` dans $HOME\AppData\Local\Programs
+
+#### 1.2 Renommer
+
+apache-maven-3.9.16 en Apache-Maven par exemple
+
+#### 1.3 Configurer la variable d'environnement du compte local (Windows)
+
+Dans un PowerShell exécutez ceci :
+
+```PowerShell
+$maven = "$HOME\AppData\Local\Programs\Apache-Maven"
+
+[Environment]::SetEnvironmentVariable(
+  "MAVEN_HOME",
+  $maven,
+  "User"
+)
+              
+$pathUtilisateur = [Environment]::GetEnvironmentVariable("Path", "User")
+
+if ($pathUtilisateur -notlike "*$maven\bin*") {
+    [Environment]::SetEnvironmentVariable(
+        "Path",
+        "$pathUtilisateur;$maven\bin",
+        "User"
+    )
+}
+```
+
+Fermer le terminal PowerShell
+
+#### 1.4 Vérifier votre installation de Maven
+
+Ouvrir un nouveau terminal PowerShell et vérifier votre installation :
+
+```PowerShell
+$env:MAVEN_HOME = $maven
+$env:Path = "$maven\bin;$env:Path"
+
+mvn -version
+```
+
+### 2. Utiliser maven pour construire le projet
+
+#### 2.1 Créer un projet Maven
+
+**Windows**
+
+Dans PowerShell, placez-vous dans le dossier où vous souhaitez créer le projet :
+
+```powershell
+cd "$HOME\Documents"
+```
+
+Lancez la génération du projet :
+
+```powershell
+mvn archetype:generate `
+  "-DgroupId=fr.exemple" `
+  "-DartifactId=demo-maven" `
+  "-DarchetypeArtifactId=maven-archetype-quickstart" `
+  "-DarchetypeVersion=1.5" `
+  "-DinteractiveMode=false"
+```
+
+**Linux**
+
+Dans le terminal, placez-vous dans le dossier où vous souhaitez créer le projet :
+
+```bash
+cd "$HOME\Documents"
+```
+
+```Bash
+mvn archetype:generate \
+  -DgroupId=fr.exemple \
+  -DartifactId=demo-maven \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DarchetypeVersion=1.5 \
+  -DinteractiveMode=false
+```
+
+la structure obtenue est assez semblable à celle-ci :
+
+```text
+demo-maven
+├── pom.xml
+└── src
+    ├── main
+    │   └── java
+    │       └── fr
+    │           └── exemple
+    │               └── App.java
+    └── test
+        └── java
+```
+#### 2.2 Ajouter le chemin d'exécution de la classe principale au `pom.xml`
+
+Se rendre dans le répertoire du projet
+```
+cd demo-maven
+```
+
+##### 2.2.1 Editer `pom.xml`
+
+Dans la parties properties de `pom.xml`.
+
+Il faut ajouter le chemin d'exécution du point d'entrée du projet :
+
+```XML
+<properties>
+  <exec.mainClass>fr.exemple.App</exec.mainClass>
+</properties>
+```
+
+**Sans cette directive `mvn exec:java` ne permet pas de lancer l'application**
+
+#### 2.3. Compiler et exécuter `Hello word`
+
+```
+mvn compile exec:java
+[INFO] Scanning for projects...
+[INFO] Loaded 23863 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
+[INFO]
+[INFO] --------------------------------------------------< fr.ldnr:shop_java >---------------------------------------------------
+[INFO] Building shop_java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] ---------------------------------------------------------[ jar ]----------------------------------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ shop_java ---
+[INFO] skip non existing resourceDirectory C:\Users\Martela\OneDrive - Facylities Multi Services\Documents\12-DEV-JAVA-003 - Java Avance\2-exercices\shop_java\src\main\resources
+[INFO]
+[INFO] --- compiler:3.13.0:compile (default-compile) @ shop_java ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 17] to target\classes
+[INFO]
+[INFO] --- exec:3.6.4:java (default-cli) @ shop_java ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[INFO] [stdout] Hello World!
+[INFO] --------------------------------------------------------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] --------------------------------------------------------------------------------------------------------------------------
+[INFO] Total time:  2.212 s
+[INFO] Finished at: 2026-09-23T14:13:51+02:00
+[INFO] --------------------------------------------------------------------------------------------------------------------------
+```
+
+
+#### 2.4. Permettre à `pom.xml` de lire les paramètres de connexion à la BDD
+
+Pour que le projet puisse lire les variables d'environnement écrites dasn env.properties, il est nécesssaire d'ajouter le plugin
+org.codehaus.mojo.
+J'ai ouvert pom.xml avec un éditeur et dans entre une balise ouvrante et fermante <plugins>
+J'ai ajouter ceci:
+
+```xml
+<!-- 1. Plugin pour lire le fichier env.properties au début du build (phase initialize) -->
+    <plugin>
+      <groupId>org.codehaus.mojo</groupId>
+      <artifactId>properties-maven-plugin</artifactId>
+      <version>1.2.1</version>
+      <executions>
+        <execution>
+          <phase>initialize</phase>
+          <goals>
+            <goal>read-project-properties</goal>
+          </goals>
+          <configuration>
+            <files>
+              <file>env.properties</file>
+            </files>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+```
+
+#### 2.5. Rechercher des dépendances JAVA
+
+**Windows**
+
+Dans un terminal PowerShell :
+
+```PowerShell
+$search = "mariadb-java-client"
+
+(Invoke-RestMethod "https://search.maven.org/solrsearch/select?q=$search&rows=5&wt=json").response.docs | Select-Object @{N="GroupId";E={$_.g}}, @{N="ArtifactId";E={$_.a}}, @{N="LatestVersion";E={$_.latestVersion}}
+```
+
+**Linux**
+
+Dans un terminal Bash :
+*nécessite l'intallation de* `jq` *(jq est une ligne command qui permet de parser, éditer, transformer des données en données JSON)*
+
+```Bash
+search="mariadb-java-client"
+
+curl -s "https://search.maven.org/solrsearch/select?q=${search}&rows=5&wt=json" | jq -r '.response.docs[] | "\(.g) : \(.a) : \(.latestVersion)"'
+```
+
+Cela vous permet d'obtenir une réponse :
+
+```txt
+GroupId                     ArtifactId               LatestVersion
+-------                     ----------               -------------
+org.jumpmind.symmetric.jdbc mariadb-java-client      1.1.1
+org.mariadb.jdbc            mariadb-java-client      3.5.3
+org.mariadb.jdbc            mariadb-java-client-jre7 1.6.1
+org.mariadb.jdbc            mariadb-java-client-jre6 1.6.1
+```
+
+#### 2.6. Ajouter des dépendances JAVA à `pom.xml`
+
+Le `pom.xml` est le cœur de tout projet Maven. 
+
+POM signifie **Project Object Model** — un seul fichier XML qui déclare ce qu'est votre projet (son identité), ce dont il a besoin (ses dépendances) et comment le construire (plugins et configuration). 
+
+Maven lit ce fichier, télécharge tout ce qu'il référence depuis un dépôt et exécute la construction. Là où un projet ad hoc disperse ces informations entre des scripts shell et un dossier lib/ de JARs copiés manuellement, Maven les regroupe toutes dans un document déclaratif et versionné.
+
+L'ajout traditionnel d'un nouvelle dépendance ce fait en général en éditant directement dans le fichier `pom.xml` et en ajoutant: 
+
+```
+<dependencies>
+    <dependency>
+        <groupId>org.mariadb.jdbc</groupId>
+        <artifactId>mariadb-java-client</artifactId>
+        <version>3.5.3</version>
+    </dependency>
+</dependencies>
+```
+
+##### 2.7. **Ajouter des plugins JAVA à `pom.xml`**
+
+<build>
+  <plugins>
+
+    <!-- Plugin jOOQ minimal sans bloc <configuration> -->
+    <plugin>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-codegen-maven</artifactId>
+      <version>3.19.11</version>
+    </plugin>
+
+  </plugins>
+</build>
+
+##### 2.8. **Maven ne permet pas d'ajouter au `pom.xml` de dépendance**
+
+Remarque: à ce jour (Mercredi 23 Septembre 2026 ), Maven ne permet pas d'ajouter automatiquement des dépendances à `pom.xml`.
+
+#### 2.9 Installer les dépendances JAVA avec `maven`
+
+Maven permet d'éviter de copier manuellement les fichiers `.jar` dans un dossier `lib`.
+
+```powershell
+mvn compile
+```
+
+Cette commande va notamment :
+
+- lire le fichier `pom.xml` ;
+- télécharger les dépendances absentes ;
+- les placer dans `.m2\repository` ;
+- compiler les fichiers Java dans `target\classes`.
+
+#### 2.9 Voir les dépendances utilisée avec `Maven`
+
+Vous pouvez voir les dépendances effectivement utilisées avec :
+
+```powershell
+mvn dependency:tree
+```
+
+#### 2.10. Forcer Maven a vérifier des mises-à-jour
+
+Pour forcer Maven à vérifier les mises à jour :
+
+```powershell
+mvn clean compile
+```
+
+### 3.0 Exécuter du code JAVA avec Maven
+
+Imaginons que vous ayez le code suivant dans un projet JAVA pour la classe APP dans le fichier `App.java` :
+
+```java
+package fr.exemple;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class App {
+    public static void main(String[] args) {
+        String texte = "Bonjour Maven";
+
+        System.out.println(StringUtils.upperCase(texte));
+        System.out.println("Le texte est vide ? " + StringUtils.isBlank(texte));
+    }
+}
+```
+
+Compilez le projet :
+
+```powershell
+mvn compile
+```
+
+Exécutez la classe avec Maven :
+
+```powershell
+mvn exec:java
+```
+
+Résultat attendu :
+
+```text
+BONJOUR MAVEN
+Le texte est vide ? false
+```
+
+### 4.0 Aller plus loin avec Maven
+
+Compiler et exécuter en une seule commande :
+
+```powershell
+mvn compile exec:java
+```
+
+Nettoyer les fichiers générés puis reconstruire le projet :
+
+```powershell
+mvn clean compile
+```
+
+Créer un fichier `.jar` :
+
+```powershell
+mvn package
+```
+
+Le fichier sera généré dans :
+
+```text
+target\demo-maven-1.0-SNAPSHOT.jar
+```
+
+## 5.0 Le PENSE-BêTES Maven
+
+```powershell
+# Créer un projet
+mvn archetype:generate ...
+
+# Télécharger les dépendances et compiler
+mvn compile
+
+# Afficher les dépendances
+mvn dependency:tree
+
+# Exécuter le programme
+mvn exec:java
+```
+
+
+
+
+
+
+
+
+
+
+
