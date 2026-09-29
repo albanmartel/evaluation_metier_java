@@ -6,15 +6,7 @@ CREATE TABLE user_training_course(
    UNIQUE(login)
 );
 
-CREATE TABLE order_training_course(
-   id_order INT AUTO_INCREMENT,
-   order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-   id_user INT NOT NULL,
-   PRIMARY KEY(id_order),
-   FOREIGN KEY(id_user) REFERENCES user_training_course(id_user)
-);
-
-CREATE TABLE client_training_course_client(
+CREATE TABLE client_training_course(
    id_client INT AUTO_INCREMENT,
    first_name VARCHAR(50) NOT NULL,
    last_name VARCHAR(100) NOT NULL,
@@ -31,9 +23,17 @@ CREATE TABLE training_course(
    training_format VARCHAR(50) NOT NULL,
    duration INT NOT NULL,
    price DECIMAL(10,2) NOT NULL,
+   PRIMARY KEY(id_course)
+);
+
+CREATE TABLE order_training_course(
+   id_order INT AUTO_INCREMENT,
+   order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
    id_client INT NOT NULL,
-   PRIMARY KEY(id_course),
-   FOREIGN KEY(id_client) REFERENCES client_training_course_client(id_client)
+   id_user INT NOT NULL,
+   PRIMARY KEY(id_order),
+   FOREIGN KEY(id_client) REFERENCES client_training_course(id_client),
+   FOREIGN KEY(id_user) REFERENCES user_training_course(id_user)
 );
 
 CREATE TABLE To_order_line(
