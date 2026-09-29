@@ -1,13 +1,19 @@
 package fr.alban;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+import static java.lang.System.*;
+
+public class App {
+
+    /**
+     * Méthode vestige de l'ancienne application "HelloWord
+     *
+     * @param args le tableau de String envoyé par le main
+     */
+    public static void helloWord(String[] args) {
+        out.println("Hello World!");
+    }
+
+    public static void main(String[] args) {
+        helloWord(args);
     }
 }
