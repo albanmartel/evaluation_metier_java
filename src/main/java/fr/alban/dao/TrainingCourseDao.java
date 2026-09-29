@@ -96,5 +96,6 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
     @Override
     protected TrainingCourse mapResultSet(ResultSet rs) throws SQLException {
         TrainingCourse trainingCourse = new TrainingCourse();
+        return trainingCourse;
     }
 }
