@@ -14,7 +14,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
 
     /**
      * Méthode équivalente à readall() pour une base de données
-     * @return une lisye d'objet TrainingCourse
+     * @return une liste d'objet TrainingCourse
      */
     @Override
     public List<TrainingCourse> findAll() {
