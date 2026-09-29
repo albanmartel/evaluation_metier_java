@@ -16,6 +16,7 @@
         <!-- Version de Java (remplace 17 par 21 ou ta version installée si besoin) -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <exec.mainClass>fr.alban.App</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>
