@@ -65,13 +65,35 @@ public abstract class AbstractDao<T> {
     }
 
     // Méthodes CRUD abstraites que chaque DAO concrète doit implémenter
+
+    /**
+     * Méthode équivalente à readall() pour une base de données
+     * @return une liste d'objet T
+     */
     public abstract List<T> findAll();
 
+    /**
+     * Méthode pour rechercher un objet T de son identifiant (id).
+     * @param id correspond à l'identifiant qui correspond à une ligne
+     * @return une instance de l'objet T
+     */
     public abstract Optional<T> findById(int id);
 
+    /**
+     * Méthode pour créer un T en bdd
+     * Insère les données d'un objet T dans un id généré (AUTO_INCREMENT).
+     * @param entity fournit une instance T de l'objet à insérer.
+     * @return L'objet T
+     */
     public abstract T create(T entity);
 
+    /**
+     * Met à jour l'enregistrement existant d'un objet T.
+     * @param entity en entrée l'objet T lui-même
+     * @return vrai ou faux en fonction du résultat de l'opération
+     */
     public abstract boolean update(T entity);
+
 
     public abstract boolean delete(int id);
 
