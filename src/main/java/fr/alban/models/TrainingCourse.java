@@ -7,6 +7,14 @@ import java.util.HashMap;
  * Classe TrainingCourse sert de modèle pour représenter la table training_course de la BDD
  */
 public class TrainingCourse {
+    /**
+     * @param idCourse représente l'id de la table training_course
+     * @param nameCourse représente le nom du cours / de la formation
+     * @param descriptionCourse représente la description du cours / de la formation
+     * @param TrainingFormat permet de prévoir le type de cours s'il est en distanciel ou en présentiel
+     * @param duration la durée en nombre de jours du cours / de la formation
+     * @param price prix de la formation concernée.
+     */
     private Integer idCourse;
     private String nameCourse;
     private String descriptionCourse;
@@ -14,15 +22,26 @@ public class TrainingCourse {
     private int duration;
     private BigDecimal price;
 
+    /*
+    Constructeur sans paramètre
+     */
     public TrainingCourse() {
         this.idCourse = 0;
         this.nameCourse = "unknown";
         this.descriptionCourse = "";
         this.TrainingFormat = "";
         this.duration = 0;
-        this.price = new BigDecimal(0)
+        this.price = new BigDecimal(0);
     }
 
+    /**
+     * @param idCourse représente l'id de la table training_course
+     * @param nameCourse représente le nom du cours / de la formation
+     * @param descriptionCourse représente la description du cours / de la formation
+     * @param TrainingFormat permet de prévoir le type de cours s'il est en distanciel ou en présentiel
+     * @param duration la durée en nombre de jours du cours / de la formation
+     * @param price prix de la formation concernée.
+     */
     public TrainingCourse(Integer idCourse, String nameCourse, String descriptionCourse, String TrainingFormat, int duration, BigDecimal price) {
         this.idCourse = idCourse;
         this.nameCourse = nameCourse;
