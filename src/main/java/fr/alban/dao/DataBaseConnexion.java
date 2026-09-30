@@ -28,7 +28,6 @@ public class DataBaseConnexion {
     private static String USER;
     private static String PASSWORD;
 
-    /* Code généré par IA le 23-09-2026 */
     // Bloc statique exécuté une seule fois lors du chargement de la classe
     static void init() throws DataBaseException {
         try {
@@ -42,6 +41,12 @@ public class DataBaseConnexion {
         }
     }
 
+    /**
+     * Cette méthode permet de charger le fichier de variables d'environnement
+     * et permet d'y piocher les informations dont nous avons besoin.
+     * @throws DataBaseException c'est la gestion des exceptions personnalisées pour ce qui ne va pas quand
+     * il est impossible de se connecter à la base.
+     */
     static void loadEnvironnementVariables() throws DataBaseException {
         Properties props = new Properties();
 
@@ -59,6 +64,12 @@ public class DataBaseConnexion {
         }
     }
 
+    /**
+     * Méthode pour voir si le driver mariadb est chargé dans le cas contraire cela lève une exception
+     * DateBaseException qui est une classe Exception personnalisée.
+     * @throws DataBaseException c'est la gestion des exceptions personnalisées pour ce qui ne va pas quand
+     * il est impossible de se connecter à la base de données
+     */
     static void isDriverInstalled() throws DataBaseException {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
@@ -67,6 +78,10 @@ public class DataBaseConnexion {
         }
     }
 
+    /**
+     * Ce bout de code est là pour ne s'exécuter qu'une fois pour se connecter à la base.
+     * Il est là aussi pour lancer les exceptions nécessaires quand l'exécution rencontre des exceptions
+     */
     static {
         try {
             init();
