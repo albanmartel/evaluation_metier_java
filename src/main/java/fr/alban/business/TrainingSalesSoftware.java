@@ -4,6 +4,7 @@ import fr.alban.dao.OrderDao;
 import fr.alban.dao.TrainingCourseDao;
 import fr.alban.models.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -84,5 +85,56 @@ public class TrainingSalesSoftware {
                 TrainingCourse::getIdCourse,
                 Function.identity()
         ));
+    }
+
+    /**
+     * Méthode pour rechercher un mot clef dans le titre ou la description
+     * le recherche se fait sans ternir compte de la casse (majuscule ou minuscule)
+     * @param searchString le mot de recherche (exemple : "java")
+     * @param listOfTrainingCourses la liste pré restreinte de formation.
+     * Ce n'est pas toujours la liste complète de formation pour mettre une recherche combinée de critères
+     * @return ArrayListe de TrainingCourse
+     */
+    public ArrayList<TrainingCourse> searchByName(String searchString, List<TrainingCourse> listOfTrainingCourses){
+        ArrayList<TrainingCourse> resultats = new ArrayList<>();
+        for (TrainingCourse course : listOfTrainingCourses) {
+            if (course.getNameCourse() != null
+                    && course.getNameCourse().toLowerCase().contains(searchString)
+                    || course.getDescriptionCourse().toLowerCase().contains(searchString)
+            ) {
+                resultats.add(course);
+            }
+        }
+
+        return resultats;
+    }
+
+    /**
+     * Méthode pour rechercher un mot clef dans le titre ou la description
+     * le recherche se fait sans ternir compte de la casse (majuscule ou minuscule)
+     * @param searchString le mot de recherche "Présentiel" ou "Distantiel
+     * @param listOfTrainingCourses la liste pré restreinte de formation.
+     * Ce n'est pas toujours la liste complète de formation pour mettre une recherche combinée de critères
+     * @return ArrayListe de TrainingCourse
+     */
+    public ArrayList<TrainingCourse> filterByTrainingCourseFormat(String searchString, List<TrainingCourse> listOfTrainingCourses){
+        ArrayList<TrainingCourse> resultats = new ArrayList<>();
+        if (searchString == "Présentiel") {
+            for (TrainingCourse course : courseList) {
+                if (course.getTrainingFormat() != null && course.getTrainingFormat() == "Présentiel") {
+                    resultats.add(course);
+                }
+            }
+        }
+
+        if (searchString == "Distantiel") {
+            for (TrainingCourse course : courseList) {
+                if (course.getTrainingFormat() != null && course.getTrainingFormat() == "Distantiel") {
+                    resultats.add(course);
+                }
+            }
+        }
+
+        return resultats;
     }
 }
