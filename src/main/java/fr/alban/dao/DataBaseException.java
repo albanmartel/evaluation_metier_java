@@ -8,7 +8,7 @@ package fr.alban.dao;
 public class DataBaseException extends Exception {
     private static final long serialVersionUID = 1L;
     private String message;
-    private String error;
+    private Exception exception;
 
 
     /**
@@ -33,9 +33,9 @@ public class DataBaseException extends Exception {
     /**
      * Constructeur avec le message et l'erreur
      * @param message
-     * @param error
+     * @param exception
      */
-    public DataBaseException(String message, String error) {
+    public DataBaseException(String message, Exception error) {
         this();
         this.message = message;
         this.error = error;
