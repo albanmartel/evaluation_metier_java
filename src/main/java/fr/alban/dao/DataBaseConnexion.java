@@ -11,8 +11,6 @@ import java.sql.SQLException;
 /* Librairie conçue pour travailler avec des dictionnaires clef / valeur */
 import java.util.Properties;
 
-import static java.lang.System.out;
-
 /**
  * L'objectif de cette classe est si aucune exception n'est levée
  * de retourner le DriverManager.getConnection (URL, USER, PASSWORD).
@@ -21,7 +19,7 @@ import static java.lang.System.out;
  */
 public class DataBaseConnexion {
 
-    private DataBaseConnexion() throws DataBaseException{
+    private DataBaseConnexion() {
         /* This utility class should not be instantiated */
     }
 
@@ -32,47 +30,48 @@ public class DataBaseConnexion {
 
     /* Code généré par IA le 23-09-2026 */
     // Bloc statique exécuté une seule fois lors du chargement de la classe
-    static void  init() throws DataBaseException{
-        Properties props = new Properties();
-
+    static void init() throws DataBaseException {
         try {
-            /* Chargement du fichier depuis le classpath (src/main/resources/env.properties) */
-            try (InputStream input = DataBaseConnexion.class.getClassLoader().getResourceAsStream("env.properties")) {
-                if (input == null) {
-                    throw new IllegalStateException("Fichier env.properties introuvable dans le classpath.");
-                }
-                props.load(input);
-
-                URL = props.getProperty("db.url");
-                USER = props.getProperty("db.user");
-                PASSWORD = props.getProperty("db.password");
-            } catch (IOException ioException) {
-                throw new RuntimeException("Erreur de lecture du fichier env.properties", ioException);
-            }
-
+            /* tester le chargement du fichier des variables d'environnement */
+            loadEnvironnementVariables();
             /* tester la présence du driver JDBC */
             isDriverInstalled();
 
         } catch (Exception e) {
-            throw new DataBaseException(e.getMessage());
+            throw new DataBaseException(e.getMessage(),e);
         }
     }
 
-    static void isDriverInstalled() throws DataBaseException{
+    static void loadEnvironnementVariables() throws DataBaseException {
+        Properties props = new Properties();
+
+        try (InputStream input = DataBaseConnexion.class.getClassLoader().getResourceAsStream("env.properties")) {
+            if (input == null) {
+                throw new IllegalStateException("Fichier env.properties introuvable dans le classpath.");
+            }
+            props.load(input);
+
+            URL = props.getProperty("db.url");
+            USER = props.getProperty("db.user");
+            PASSWORD = props.getProperty("db.password");
+        } catch (IOException ioException) {
+            throw new DataBaseException("Erreur de lecture du fichier env.properties", ioException);
+        }
+    }
+
+    static void isDriverInstalled() throws DataBaseException {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new DataBaseException(e.getMessage());
+        } catch (ClassNotFoundException classNotFoundException) {
+            throw new DataBaseException("une exception est survenue", classNotFoundException);
         }
     }
 
     static {
         try {
             init();
-        } catch (DataBaseException ex) {
-            out.println("Une exception s'est déclenchée ! \n le programme va s'arrêter !");
-            ex.getCause().printStackTrace();
-            System.exit(1);
+        } catch (DataBaseException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -80,7 +79,7 @@ public class DataBaseConnexion {
      * Ouvre et retourne une connexion JDBC.
      *
      * @return DriverManager.getConnection(URL, USER, PASSWORD);
-     * @throws SQLException
+     * @throws SQLException exception sql de connection à la base
      */
     public static Connection getConnection() throws SQLException {
         if (URL == null || USER == null || PASSWORD == null) {
