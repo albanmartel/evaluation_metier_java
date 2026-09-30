@@ -1,9 +1,11 @@
 package fr.alban;
 
 import static java.lang.System.*;
+import java.util.List;
 
 import fr.alban.dao.DataBaseException;
 import fr.alban.dao.TrainingCourseDao;
+import fr.alban.models.TrainingCourse;
 
 import java.sql.SQLException;
 
@@ -31,8 +33,17 @@ public class App {
         }
     }
 
+    public static void verifyTrainingCourseFindAll(){
+        TrainingCourseDao trainingCourseDao = new TrainingCourseDao();
+        List<TrainingCourse> courses = trainingCourseDao.findAll();
+        for (TrainingCourse course : courses){
+            out.println(course);
+        }
+    }
+
     public static void main(String[] args) {
         helloWord(args);
         verifyDataBaseConnection();
+        verifyTrainingCourseFindAll();
     }
 }
