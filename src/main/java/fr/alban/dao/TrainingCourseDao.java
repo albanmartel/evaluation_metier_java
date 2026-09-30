@@ -53,7 +53,7 @@ public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
         String sql = "SELECT id_course as idCourse, name_course as nameCourse, " +
                 "description_course as descriptionCourse," +
                 " training_format as TrainingCourse, " +
-                "duration as duration, price as price FROM TrainingCourses";
+                "duration as duration, price as price FROM training_course";
 
         try (Connection connection = DataBaseConnexion.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
@@ -86,7 +86,7 @@ public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
         String sql = "SELECT id_course as idCourse, name_course as nameCourse, " +
                 "description_course as descriptionCourse," +
                 " training_format as TrainingCourse, " +
-                "duration as duration, price as price FROM TrainingCourses where id_course = ?";
+                "duration as duration, price as price FROM training_course where id_course = ?";
 
         try (Connection connection = DataBaseConnexion.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
