@@ -8,14 +8,14 @@ package fr.alban.dao;
 public class DataBaseException extends Exception {
     private static final long serialVersionUID = 1L;
     private String message;
-    private String error;
+    private Exception exception;
 
 
     /**
      * Constructeur sans paramètre
      */
     public DataBaseException() {
-        super("Il semble y avoir un problème avec la connexion à la base données");
+        super("Problème avec la connexion à la base données");
     }
 
     /**
@@ -33,11 +33,20 @@ public class DataBaseException extends Exception {
     /**
      * Constructeur avec le message et l'erreur
      * @param message
-     * @param error
+     * @param exception;
      */
-    public DataBaseException(String message, String error) {
+    public DataBaseException(String message, Exception exception) {
         this();
         this.message = message;
-        this.error = error;
+        this.exception = exception;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public String getExceptionMessage() {
+        return exception.getMessage();
     }
 }
