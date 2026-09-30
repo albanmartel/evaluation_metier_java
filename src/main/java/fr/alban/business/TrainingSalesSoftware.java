@@ -150,11 +150,10 @@ public class TrainingSalesSoftware {
         String searchLowercase = searchString.toLowerCase();
 
         for (TrainingCourse course : listOfTrainingCourses) {
-            if (course.getNameCourse() != null
-                    && (course.getNameCourse().toLowerCase().contains(searchLowercase)
-                    || course.getDescriptionCourse().toLowerCase().contains(searchLowercase))
-            ) {
-                resultats.add(course);
+            if (course!= null){
+                if ((course.getNameCourse().toLowerCase().contains(searchLowercase) || course.getDescriptionCourse().toLowerCase().contains(searchLowercase))) {
+                    resultats.add(course);
+                }
             }
         }
 
