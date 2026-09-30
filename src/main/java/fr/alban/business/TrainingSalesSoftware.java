@@ -151,7 +151,10 @@ public class TrainingSalesSoftware {
 
         for (TrainingCourse course : listOfTrainingCourses) {
             if (course!= null){
-                if ((course.getNameCourse().toLowerCase().contains(searchLowercase) || course.getDescriptionCourse().toLowerCase().contains(searchLowercase))) {
+                boolean isPresentInTitle = course.getNameCourse().toLowerCase().contains(searchLowercase);
+                boolean isPresentInDescription = course.getDescriptionCourse().toLowerCase().contains(searchLowercase);
+
+                if (isPresentInTitle || isPresentInDescription) {
                     resultats.add(course);
                 }
             }
