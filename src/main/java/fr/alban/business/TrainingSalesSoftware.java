@@ -166,6 +166,7 @@ public class TrainingSalesSoftware {
     /**
      * Méthode pour rechercher un mot clef dans le titre ou la description
      * le recherche se fait sans ternir compte de la casse (majuscule ou minuscule)
+     * Une sécurité est mise pour vérifier si la saisie de l'utilisateur est vide ou nulle.
      * @param searchString le mot de recherche "Présentiel" ou "Distantiel
      * @param listOfTrainingCourses la liste pré restreinte de formation.
      * Ce n'est pas toujours la liste complète de formation pour mettre une recherche combinée de critères
@@ -173,17 +174,20 @@ public class TrainingSalesSoftware {
      */
     public ArrayList<TrainingCourse> filterByTrainingCourseFormat(String searchString, List<TrainingCourse> listOfTrainingCourses){
         ArrayList<TrainingCourse> resultats = new ArrayList<>();
-        if (searchString == "Présentiel") {
-            for (TrainingCourse course : courseList) {
-                if (course.getTrainingFormat() != null && course.getTrainingFormat() == "Présentiel") {
-                    resultats.add(course);
-                }
-            }
+
+        if (searchString == null || searchString.trim().isEmpty()) {
+            return resultats;
         }
 
-        if (searchString == "Distantiel") {
-            for (TrainingCourse course : courseList) {
-                if (course.getTrainingFormat() != null && course.getTrainingFormat() == "Distantiel") {
+        for (TrainingCourse course : listOfTrainingCourses) {
+            if (course.getTrainingFormat() != null){
+                boolean isOnSideTraining = searchString.equals("Présentiel");
+                boolean isDistanceTraining = searchString.equals("Distantiel");
+                boolean isFormatTrainingSuitable = searchString.equals(course.getTrainingFormat());
+                if (isDistanceTraining && isFormatTrainingSuitable) {
+                    resultats.add(course);
+                }
+                if (isOnSideTraining && isFormatTrainingSuitable){
                     resultats.add(course);
                 }
             }
