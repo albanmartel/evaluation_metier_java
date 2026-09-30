@@ -46,6 +46,28 @@ public class App {
         }
     }
 
+    /**
+     * La méthode permet d'afficher un tableau formaté.
+     * Elle utilise la HasMap de chaque objet TrainingCourse pour afficher le tableau.
+     * @param courses c'est une liste d'objet TrainingCourse
+     */
+    public static void displayFormatArray(List<TrainingCourse> courses){
+        out.printf("| %-32s | %-5s | %-70s | %-3s | %-10s | %-3s | %n", "Nom", "Prix", "Description", "Durée", "Format", "id");
+        out.println("---------------------------------------------" +
+                "-------------------------------------------------" +
+                "--------------------------------------------------");
+        for (TrainingCourse course: courses){
+            HashMap<String, String> hashMap = course.trainingCourseDictionnary();
+            out.printf("| %-32s | %-5s | %-70s | %-5s | %-10s | %-3s | %n",
+                    hashMap.get("nameCourse"),
+                    hashMap.get("price"),
+                    hashMap.get("descriptionCourse"),
+                    hashMap.get("duration"),
+                    hashMap.get("TrainingFormat"),
+                    hashMap.get("idCourse"));
+        }
+    }
+
     public static void main(String[] args) {
         helloWord(args);
         verifyDataBaseConnection();
