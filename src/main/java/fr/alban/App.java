@@ -37,22 +37,11 @@ public class App {
     }
 
     /**
-     * Méthode pour vérifier que l'affichage de toutes les formations de la base fonctionne
-     */
-    public static void verifyTrainingCourseFindAll(){
-        TrainingCourseDao trainingCourseDao = new TrainingCourseDao();
-        List<TrainingCourse> courses = trainingCourseDao.findAll();
-        for (TrainingCourse course : courses){
-            out.println(course);
-        }
-    }
-
-    /**
      * La méthode permet d'afficher un tableau formaté.
      * Elle utilise la HasMap de chaque objet TrainingCourse pour afficher le tableau.
      * @param courses c'est une liste d'objet TrainingCourse
      */
-    public static void git a{
+    public static void displayFormatArray(){
         TrainingSalesSoftware trainingSalesSoftware = new TrainingSalesSoftware();
         trainingSalesSoftware.init();
         trainingSalesSoftware.displayFormatArray(trainingSalesSoftware.getCourseList());
@@ -62,8 +51,6 @@ public class App {
         helloWord(args);
         out.println();
         verifyDataBaseConnection();
-        out.println();
-        //verifyTrainingCourseFindAll();
         out.println();
         displayFormatArray();
     }
