@@ -45,6 +45,12 @@ public class App {
         return trainingSalesSoftware;
     }
 
+    /**
+     * La méthode permet de faire 2 recherches combinées par nom (exemple : java) et par format de formation ("Distantiel" ou "Présentiel").
+     * @param searchString la chaîne de recherche
+     * @param courseFormat le format de la formation
+     * @param trainingSalesSoftware l'instance de la classe business qui permet de récupérer toutes les formations
+     */
     public static void filterTrainingCourseListe(String searchString, String courseFormat, TrainingSalesSoftware trainingSalesSoftware){
         ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList());
         filterliste = trainingSalesSoftware.filterByTrainingCourseFormat(courseFormat, filterliste);
@@ -60,6 +66,8 @@ public class App {
         out.println();
         out.println(trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList()));
         out.println();
-        filterTrainingCourseListe("JAVA", "Distantiel", trainingSalesSoftware);
+        out.println(trainingSalesSoftware.filterByTrainingCourseFormat("Distantiel", trainingSalesSoftware.getCourseList()));
+        out.println();
+        filterTrainingCourseListe("java", "Présentiel", trainingSalesSoftware);
     }
 }
