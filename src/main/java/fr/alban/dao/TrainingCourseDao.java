@@ -15,19 +15,32 @@ import java.util.Optional;
  */
 public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
 
-
-    public boolean isAccessible() throws DataBaseException{
+    /**
+     * Méthode pour se connecter à la base de données
+     * @return vrai si la connexion à la base fonctionne et faux si ce n'est pas le cas
+     */
+    public boolean isAccessible() {
         boolean result = false;
-
-        try (Connection connection = DataBaseConnexion.getConnection()) {
-            if (connection != null && connection.isValid(2)) {
-                result = true;
+        try {
+            try {
+                Connection connection = DataBaseConnexion.getConnection();
+                try {
+                    if (connection != null && connection.isValid(2)) {
+                        result = true;
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            } catch (SQLException sqlException) {
+                throw new DataBaseException("problème de connexion à la BD", sqlException);
             }
-        } catch (SQLException sqlException) {
-            throw new DataBaseException("problème de connexion à la BD",  sqlException);
+        } catch (DataBaseException dataBaseException) {
+            System.out.println(dataBaseException.getMessage());
         }
         return result;
     }
+
 
     /**
      * Méthode équivalente à readall() pour une base de données
@@ -40,7 +53,7 @@ public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
         String sql = "SELECT id_course as idCourse, name_course as nameCourse, " +
                 "description_course as descriptionCourse," +
                 " training_format as TrainingCourse, " +
-                "duration as duration, price as rpice FROM TrainingCourses";
+                "duration as duration, price as price FROM TrainingCourses";
 
         try (Connection connection = DataBaseConnexion.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
@@ -68,6 +81,26 @@ public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
      */
     @Override
     public Optional<TrainingCourse> findById(int idCourse) {
+        Optional<TrainingCourse> course = Optional.empty();
+
+        String sql = "SELECT id_course as idCourse, name_course as nameCourse, " +
+                "description_course as descriptionCourse," +
+                " training_format as TrainingCourse, " +
+                "duration as duration, price as price FROM TrainingCourses where id_course = ?";
+
+        try (Connection connection = DataBaseConnexion.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+
+            stmt.setLong(1, idCourse);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapResultSet(rs));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return Optional.empty();
     }
 
@@ -117,6 +150,12 @@ public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
     @Override
     protected TrainingCourse mapResultSet(ResultSet rs) throws SQLException {
         TrainingCourse trainingCourse = new TrainingCourse();
+        trainingCourse.setIdCourse(rs.getInt("id_course"));
+        trainingCourse.setNameCourse(rs.getString("name_course"));
+        trainingCourse.setDescriptionCourse(rs.getString("description_course"));
+        trainingCourse.setTrainingFormat(rs.getString("TrainingCourse"));
+        trainingCourse.setDuration(rs.getInt("duration"));
+        trainingCourse.setPrice(rs.getBigDecimal("price"));
         return trainingCourse;
     }
 }
