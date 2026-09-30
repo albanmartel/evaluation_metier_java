@@ -46,6 +46,16 @@ public class App {
     }
 
     /**
+     * La méthode permet de faire 1 recherche par nom (exemple : java).
+     * @param searchString la chaîne de recherche
+     * @param trainingSalesSoftware l'instance de la classe business qui permet de récupérer toutes les formations
+     */
+    public static void searchTrainingCourseListe(String searchString, TrainingSalesSoftware trainingSalesSoftware){
+        ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList());
+        trainingSalesSoftware.displayFormatArray(filterliste);
+    }
+
+    /**
      * La méthode permet de faire 2 recherches combinées par nom (exemple : java) et par format de formation ("Distantiel" ou "Présentiel").
      * @param searchString la chaîne de recherche
      * @param courseFormat le format de la formation
@@ -62,9 +72,11 @@ public class App {
         out.println();
         verifyDataBaseConnection();
         out.println();
+        out.println("Afficher toute les formations");
         TrainingSalesSoftware trainingSalesSoftware = displayFormatArray();
         out.println();
-        out.println(trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList()));
+        out.println("Faire une recherche par nom \"Java\"");
+        searchTrainingCourseListe("Java", trainingSalesSoftware);
         out.println();
         out.println(trainingSalesSoftware.filterByTrainingCourseFormat("Distantiel", trainingSalesSoftware.getCourseList()));
         out.println();
