@@ -2,15 +2,8 @@ package fr.alban;
 
 import static java.lang.System.*;
 
-import java.util.HashMap;
-import java.util.List;
-
 import fr.alban.business.TrainingSalesSoftware;
-import fr.alban.dao.DataBaseException;
 import fr.alban.dao.TrainingCourseDao;
-import fr.alban.models.TrainingCourse;
-
-import java.sql.SQLException;
 
 
 public class App {
