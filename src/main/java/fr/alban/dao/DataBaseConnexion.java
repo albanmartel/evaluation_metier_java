@@ -35,25 +35,34 @@ public class DataBaseConnexion {
     static void  init() throws DataBaseException{
         Properties props = new Properties();
 
-        /* Chargement du fichier depuis le classpath (src/main/resources/env.properties) */
-        try (InputStream input = DataBaseConnexion.class.getClassLoader().getResourceAsStream("env.properties")) {
-            if (input == null) {
-                throw new IllegalStateException("Fichier env.properties introuvable dans le classpath.");
+        try {
+            /* Chargement du fichier depuis le classpath (src/main/resources/env.properties) */
+            try (InputStream input = DataBaseConnexion.class.getClassLoader().getResourceAsStream("env.properties")) {
+                if (input == null) {
+                    throw new IllegalStateException("Fichier env.properties introuvable dans le classpath.");
+                }
+                props.load(input);
+
+                URL = props.getProperty("db.url");
+                USER = props.getProperty("db.user");
+                PASSWORD = props.getProperty("db.password");
+            } catch (IOException ioException) {
+                throw new RuntimeException("Erreur de lecture du fichier env.properties", ioException);
             }
-            props.load(input);
 
-            URL = props.getProperty("db.url");
-            USER = props.getProperty("db.user");
-            PASSWORD = props.getProperty("db.password");
-        }  catch (IOException ioException) {
-            throw new RuntimeException("Erreur de lecture du fichier env.properties", ioException);
+            /* tester la présence du driver JDBC */
+            isDriverInstalled();
+
+        } catch (Exception e) {
+            throw new DataBaseException(e.getMessage());
         }
+    }
 
-        /* tester la présence du driver JDBC */
-        try{
+    static void isDriverInstalled() throws DataBaseException{
+        try {
             Class.forName("org.mariadb.jdbc.Driver");
-        } catch (ClassNotFoundException classNotFoundException) {
-            throw new RuntimeException("Driver JDBC MariaDB introuvable dans le classpath", classNotFoundException);
+        } catch (ClassNotFoundException e) {
+            throw new DataBaseException(e.getMessage());
         }
     }
 
