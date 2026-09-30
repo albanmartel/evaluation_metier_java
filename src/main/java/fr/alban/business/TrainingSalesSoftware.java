@@ -5,10 +5,13 @@ import fr.alban.dao.TrainingCourseDao;
 import fr.alban.models.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import static java.lang.System.out;
 
 /**
  * Cette classe est la classe métier de l'application vente de formation.
@@ -75,6 +78,46 @@ public class TrainingSalesSoftware {
         this.userMap = userMap;
     }
 
+    public List<TrainingCourse> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<TrainingCourse> courseList) {
+        this.courseList = courseList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    public List<OrderLine> getOrderLineList() {
+        return orderLineList;
+    }
+
+    public void setOrderLineList(List<OrderLine> orderLineList) {
+        this.orderLineList = orderLineList;
+    }
+
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
     /**
      * Methode qui va construire des listes d'objet
      */
@@ -136,5 +179,27 @@ public class TrainingSalesSoftware {
         }
 
         return resultats;
+    }
+
+    /**
+     * La méthode permet d'afficher un tableau formaté.
+     * Elle utilise la HasMap de chaque objet TrainingCourse pour afficher le tableau.
+     * @param courses c'est une liste d'objet TrainingCourse
+     */
+    public void displayFormatArray(List<TrainingCourse> courses){
+        out.printf("| %-32s | %-5s | %-70s | %-3s | %-10s | %-3s | %n", "Nom", "Prix", "Description", "Durée", "Format", "id");
+        out.println("---------------------------------------------" +
+                "-------------------------------------------------" +
+                "--------------------------------------------------");
+        for (TrainingCourse course: courses){
+            HashMap<String, String> hashMap = course.trainingCourseDictionnary();
+            out.printf("| %-32s | %-5s | %-70s | %-5s | %-10s | %-3s | %n",
+                    hashMap.get("nameCourse"),
+                    hashMap.get("price"),
+                    hashMap.get("descriptionCourse"),
+                    hashMap.get("duration"),
+                    hashMap.get("TrainingFormat"),
+                    hashMap.get("idCourse"));
+        }
     }
 }
