@@ -56,6 +56,16 @@ public class App {
     }
 
     /**
+     * La méthode permet de faire une sélection format de formation ("Distantiel" ou "Présentiel").
+     * @param courseFormat la chaîne pour identifier le type de format recherché
+     * @param trainingSalesSoftware l'instance de la classe business qui permet de récupérer toutes les formations
+     */
+    public static void searchByTrainingCourseFormat(String courseFormat, TrainingSalesSoftware trainingSalesSoftware){
+        ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.filterByTrainingCourseFormat(courseFormat, trainingSalesSoftware.getCourseList());
+        trainingSalesSoftware.displayFormatArray(filterliste);
+    }
+
+    /**
      * La méthode permet de faire 2 recherches combinées par nom (exemple : java) et par format de formation ("Distantiel" ou "Présentiel").
      * @param searchString la chaîne de recherche
      * @param courseFormat le format de la formation
@@ -68,18 +78,19 @@ public class App {
     }
 
     public static void main(String[] args) {
-        helloWord(args);
         out.println();
         verifyDataBaseConnection();
         out.println();
-        out.println("Afficher toute les formations");
+        out.println("Afficher toute les formations\n");
         TrainingSalesSoftware trainingSalesSoftware = displayFormatArray();
         out.println();
-        out.println("Faire une recherche par nom \"Java\"");
+        out.println("Faire une recherche par nom \"Java\"\n");
         searchTrainingCourseListe("Java", trainingSalesSoftware);
         out.println();
-        out.println(trainingSalesSoftware.filterByTrainingCourseFormat("Distantiel", trainingSalesSoftware.getCourseList()));
+        out.println("Filtrer les formations en \"Distantiel\"\n");
+        searchByTrainingCourseFormat("Distantiel", trainingSalesSoftware);
         out.println();
+        out.println("Faire une recherche par nom \"Java\" et en \"Présentiel\"\n");
         filterTrainingCourseListe("java", "Présentiel", trainingSalesSoftware);
     }
 }
