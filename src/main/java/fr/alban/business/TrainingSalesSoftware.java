@@ -133,6 +133,8 @@ public class TrainingSalesSoftware {
     /**
      * Méthode pour rechercher un mot clef dans le titre ou la description
      * le recherche se fait sans ternir compte de la casse (majuscule ou minuscule)
+     * Une sécurité est mise pour vérifier si la saisie de l'utilisateur est vide ou nulle.
+     * La saisie de l'utilisateur mise en minuscule
      * @param searchString le mot de recherche (exemple : "java")
      * @param listOfTrainingCourses la liste pré restreinte de formation.
      * Ce n'est pas toujours la liste complète de formation pour mettre une recherche combinée de critères
@@ -140,10 +142,17 @@ public class TrainingSalesSoftware {
      */
     public ArrayList<TrainingCourse> searchByName(String searchString, List<TrainingCourse> listOfTrainingCourses){
         ArrayList<TrainingCourse> resultats = new ArrayList<>();
+
+        if (searchString == null || searchString.trim().isEmpty()) {
+            return resultats;
+        }
+
+        String searchLowercase = searchString.toLowerCase();
+
         for (TrainingCourse course : listOfTrainingCourses) {
             if (course.getNameCourse() != null
-                    && course.getNameCourse().toLowerCase().contains(searchString)
-                    || course.getDescriptionCourse().toLowerCase().contains(searchString)
+                    && (course.getNameCourse().toLowerCase().contains(searchLowercase)
+                    || course.getDescriptionCourse().toLowerCase().contains(searchLowercase))
             ) {
                 resultats.add(course);
             }
