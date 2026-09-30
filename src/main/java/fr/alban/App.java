@@ -1,6 +1,8 @@
 package fr.alban;
 
 import static java.lang.System.*;
+
+import java.util.HashMap;
 import java.util.List;
 
 import fr.alban.dao.DataBaseException;
@@ -33,6 +35,9 @@ public class App {
         }
     }
 
+    /**
+     * Méthode pour vérifier que l'affichage de toutes les formations de la base fonctionne
+     */
     public static void verifyTrainingCourseFindAll(){
         TrainingCourseDao trainingCourseDao = new TrainingCourseDao();
         List<TrainingCourse> courses = trainingCourseDao.findAll();
@@ -44,6 +49,10 @@ public class App {
     public static void main(String[] args) {
         helloWord(args);
         verifyDataBaseConnection();
-        verifyTrainingCourseFindAll();
+        //verifyTrainingCourseFindAll();
+        TrainingCourseDao trainingCourseDao = new TrainingCourseDao();
+        List<TrainingCourse> courses =  trainingCourseDao.findAll();
+
+        displayFormatArray(courses);
     }
 }
