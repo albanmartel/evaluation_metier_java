@@ -5,6 +5,7 @@ import static java.lang.System.*;
 import java.util.HashMap;
 import java.util.List;
 
+import fr.alban.business.TrainingSalesSoftware;
 import fr.alban.dao.DataBaseException;
 import fr.alban.dao.TrainingCourseDao;
 import fr.alban.models.TrainingCourse;
@@ -51,30 +52,19 @@ public class App {
      * Elle utilise la HasMap de chaque objet TrainingCourse pour afficher le tableau.
      * @param courses c'est une liste d'objet TrainingCourse
      */
-    public static void displayFormatArray(List<TrainingCourse> courses){
-        out.printf("| %-32s | %-5s | %-70s | %-3s | %-10s | %-3s | %n", "Nom", "Prix", "Description", "Durée", "Format", "id");
-        out.println("---------------------------------------------" +
-                "-------------------------------------------------" +
-                "--------------------------------------------------");
-        for (TrainingCourse course: courses){
-            HashMap<String, String> hashMap = course.trainingCourseDictionnary();
-            out.printf("| %-32s | %-5s | %-70s | %-5s | %-10s | %-3s | %n",
-                    hashMap.get("nameCourse"),
-                    hashMap.get("price"),
-                    hashMap.get("descriptionCourse"),
-                    hashMap.get("duration"),
-                    hashMap.get("TrainingFormat"),
-                    hashMap.get("idCourse"));
-        }
+    public static void git a{
+        TrainingSalesSoftware trainingSalesSoftware = new TrainingSalesSoftware();
+        trainingSalesSoftware.init();
+        trainingSalesSoftware.displayFormatArray(trainingSalesSoftware.getCourseList());
     }
 
     public static void main(String[] args) {
         helloWord(args);
+        out.println();
         verifyDataBaseConnection();
+        out.println();
         //verifyTrainingCourseFindAll();
-        TrainingCourseDao trainingCourseDao = new TrainingCourseDao();
-        List<TrainingCourse> courses =  trainingCourseDao.findAll();
-
-        displayFormatArray(courses);
+        out.println();
+        displayFormatArray();
     }
 }
