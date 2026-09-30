@@ -40,4 +40,18 @@ public class DataBaseException extends Exception {
         this.message = message;
         this.error = error;
     }
+
+     @Override
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+    * Ajouter une méthode pour mieux afficher les messages des exceptions
+    */
+    public String getExceptionMessage() {
+        return exception.getMessage();
+    }
+
+    
 }
