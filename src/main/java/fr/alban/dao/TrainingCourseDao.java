@@ -13,10 +13,25 @@ import java.util.Optional;
 /**
  * Class TrainingCourseDao, cette classe fait la jonction entre la BDD et le model Training Courses
  */
-public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
+public class TrainingCourseDao extends AbstractDao<TrainingCourse> {
+
+
+    public boolean isAccessible() throws DataBaseException{
+        boolean result = false;
+
+        try (Connection connection = DataBaseConnexion.getConnection()) {
+            if (connection != null && connection.isValid(2)) {
+                result = true;
+            }
+        } catch (SQLException sqlException) {
+            throw new DataBaseException("problème de connexion à la BD",  sqlException);
+        }
+        return result;
+    }
 
     /**
      * Méthode équivalente à readall() pour une base de données
+     *
      * @return une liste d'objet TrainingCourse
      */
     @Override
@@ -27,7 +42,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
                 " training_format as TrainingCourse, " +
                 "duration as duration, price as rpice FROM TrainingCourses";
 
-        try (Connection connection = getConnection();
+        try (Connection connection = DataBaseConnexion.getConnection();
              PreparedStatement stmt = connection.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -37,6 +52,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
             }
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
 
@@ -45,6 +61,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
 
     /**
      * Méthode pour recherche un cours à partir de son identifiant (idCourse).
+     *
      * @param idCourse correspond à l'identifiant qui correspond à une ligne
      * @return une ligne d'enregistrement correspondante représentée par un objet
      * du modèle
@@ -57,6 +74,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
     /**
      * Méthode pour créer un cours en bdd
      * Insère un nouveau Cours (formation) et met à jour son IdArticle généré (AUTO_INCREMENT).
+     *
      * @param entity correspond à un objet TrainingCourse
      * @return La formation créée
      */
@@ -67,6 +85,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
 
     /**
      * Met à jour une formation existant.
+     *
      * @param entity en entrée l'instance d'un cours / d'une formation
      * @return vrai ou faux en fonction du résultat de l'opération
      */
@@ -77,8 +96,9 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
 
     /**
      * Supprime un article par son ID.
+     *
      * @param idCourse en entrée l'identifiant correspondant
-     * au cours ou à la formation à supprimer
+     *                 au cours ou à la formation à supprimer
      * @return vrai ou faux en fonction du résultat de l'opération
      */
     @Override
@@ -89,6 +109,7 @@ public class TrainingCourseDao extends AbstractDao <TrainingCourse> {
     /**
      * Méthode utilitaire pour convertir une ligne de ResultSet en objet Article.
      * Implémentation de la méthode abstraite définie dans AbstractDao.
+     *
      * @param rs le résultat de l'un des requêtes précédentes
      * @return l'objet TrainingCourse construit à partir des données récupérées en base
      * @throws SQLException
