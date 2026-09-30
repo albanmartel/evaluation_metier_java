@@ -4,6 +4,9 @@ import static java.lang.System.*;
 
 import fr.alban.business.TrainingSalesSoftware;
 import fr.alban.dao.TrainingCourseDao;
+import fr.alban.models.TrainingCourse;
+
+import java.util.ArrayList;
 
 
 public class App {
@@ -32,12 +35,20 @@ public class App {
     /**
      * La méthode permet d'afficher un tableau formaté.
      * Elle utilise la HasMap de chaque objet TrainingCourse pour afficher le tableau.
-     * @param courses c'est une liste d'objet TrainingCourse
+     * @return TrainingSalesSofware c'est une liste d'objet TrainingCourse initialisé
      */
-    public static void displayFormatArray(){
+    public static TrainingSalesSoftware displayFormatArray(){
         TrainingSalesSoftware trainingSalesSoftware = new TrainingSalesSoftware();
         trainingSalesSoftware.init();
         trainingSalesSoftware.displayFormatArray(trainingSalesSoftware.getCourseList());
+
+        return trainingSalesSoftware;
+    }
+
+    public static void filterTrainingCourseListe(String searchString, String courseFormat, TrainingSalesSoftware trainingSalesSoftware){
+        ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList());
+        filterliste = trainingSalesSoftware.filterByTrainingCourseFormat(courseFormat, filterliste);
+        trainingSalesSoftware.displayFormatArray(filterliste);
     }
 
     public static void main(String[] args) {
@@ -45,6 +56,10 @@ public class App {
         out.println();
         verifyDataBaseConnection();
         out.println();
-        displayFormatArray();
+        TrainingSalesSoftware trainingSalesSoftware = displayFormatArray();
+        out.println();
+        out.println(trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList()));
+        out.println();
+        filterTrainingCourseListe("JAVA", "Distantiel", trainingSalesSoftware);
     }
 }
