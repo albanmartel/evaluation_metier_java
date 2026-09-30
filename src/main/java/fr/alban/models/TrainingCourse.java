@@ -51,6 +51,54 @@ public class TrainingCourse {
         this.price = price;
     }
 
+    public Integer getIdCourse() {
+        return idCourse;
+    }
+
+    public void setIdCourse(Integer idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    public String getNameCourse() {
+        return nameCourse;
+    }
+
+    public void setNameCourse(String nameCourse) {
+        this.nameCourse = nameCourse;
+    }
+
+    public String getDescriptionCourse() {
+        return descriptionCourse;
+    }
+
+    public void setDescriptionCourse(String descriptionCourse) {
+        this.descriptionCourse = descriptionCourse;
+    }
+
+    public String getTrainingFormat() {
+        return TrainingFormat;
+    }
+
+    public void setTrainingFormat(String trainingFormat) {
+        TrainingFormat = trainingFormat;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     /**
      *
      * @return String qui permet d'afficher tous les paramètres de l'instance
