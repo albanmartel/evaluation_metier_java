@@ -63,8 +63,7 @@ public class App {
      * @param trainingSalesSoftware l'instance de la classe business qui permet de récupérer toutes les formations
      */
     public static void filterTrainingCourseListe(String searchString, String courseFormat, TrainingSalesSoftware trainingSalesSoftware){
-        ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.searchByName("Java", trainingSalesSoftware.getCourseList());
-        filterliste = trainingSalesSoftware.filterByTrainingCourseFormat(courseFormat, filterliste);
+        ArrayList<TrainingCourse> filterliste = trainingSalesSoftware.filterTrainingCourseListe(searchString, courseFormat, trainingSalesSoftware.getCourseList());
         trainingSalesSoftware.displayFormatArray(filterliste);
     }
 
