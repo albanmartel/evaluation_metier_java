@@ -43,6 +43,15 @@ else Scénario Nominal : Compte créé
           client/bénéficiaire n'a été rattaché.
         end note
         S --> V: Commande non finalisée
+    
+    else Scénario Nominal : Bénéficiaire renseigné & Paiement
+        V -> S: Saisir les informations du client / bénéficiaire
+        S -> S: Rattaché le bénéficiaire à la commande
+        S --> V: Demander le règlement
+
+        V -> S: Effectuer le paiement
+        S -> S: Valider le paiement et générer la commande
+        S --> V: Confirmation de la commande effectuée
 
 end
 @enduml
