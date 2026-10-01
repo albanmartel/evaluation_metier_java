@@ -28,6 +28,10 @@
 * S'authentifer à l'aide d'un login et un mot de passe:
     * Afficher un formulaire d'authentification avec les champs login et mot de passe
     * Offrir la possibilité de changer le mot de passe en fournissant une adresse email de récupération.
+    * Trois essais d'authentification possibles au maximum
+    * être banni pendant un temps (3h en cas de 3 échecs d'authentification)
+* Ouvrir une session (log in)
+* Fermer une session (log out)
 * Passer commande et payer
 
 ### POUR LES ADMINISTRATEURS : *(Partie non traitée)*
