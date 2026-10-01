@@ -2,4 +2,23 @@
 autonumber
 actor "Visitor / User" as V
 participant "System" as S
+
+== 1. Recherche & Filtrage ==
+V -> S: Parcourir le catalogue des formations
+S --> V: Liste des formations
+
+V -> S: Rechercher par mot (ex: "Java")
+S --> V: Résultats de recherche
+
+V -> S: Filtrer par "Distantiel ou Présentiel"
+S --> V: Formation "Java en ligne" disponible
+
+== 2. Réservation & Panier ==
+V -> S: Ajouter la formation au panier
+S -> S: Créer un nouveau panier (si aucun n’existe)
+S --> V: Panier mis à jour
+
+== 3. Tentative de Commande & Compte ==
+V -> S: Valider le panier / Passer la commande
+S --> V: Demander la création d'un compte (Non authentifié)
 @enduml
