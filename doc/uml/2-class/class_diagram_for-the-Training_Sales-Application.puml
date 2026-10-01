@@ -8,6 +8,11 @@ class TrainingCourse{
     -string TrainingFormat
     -int duration
     -double price
+    + trainingCourseDictionnary()
+    + searchByName()
+    + filterByTrainingCourseFormat()
+    + displayFormatArray()
+
 }
 
 class Order{
@@ -40,6 +45,11 @@ class User{
     - int idUser
     - string login
     - string password
+    + authenticate()
+    + purchases()
+    + logIn()
+    + logOut()
+    + pays()
 } 
 
 
@@ -50,7 +60,6 @@ User "1" <--> "*" Order : purchases <
 Order "1" <--> "1..*" OrderLine : takes >
 
 OrderLine "1" <--> "*" TrainingCourse : includes >
-
 
 
 @enduml
