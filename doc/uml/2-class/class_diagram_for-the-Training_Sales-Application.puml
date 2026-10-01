@@ -1,27 +1,31 @@
-@startuml School
+@startuml TrainingSallesApplication
+left to right direction
 
-abstract class TrainingCourse
-{
+class TrainingCourse{
     -int idCourse
     -string nameCourse
     -string descriptionCourse
     -string TrainingFormat
     -int duration
-    -BigDecimal price
+    -double price
 }
 
-class Teacher 
-{
-    -date start_date
+class Order{
+    -int idOrder
+    -dateTime orderDate
+    -int idClient
+    -int idUser
 }
 
-class Student
-{
-    -integer student_nbr
+class OrderLine{
+    -int idOrderLine
+    -int idOrder
+    -int idCourse
+    -double unitPrice
+    -int quantity
 }
 
-class Client
-{
+class Client{
     -int idClient
 	-string firstName
     -string lastName
@@ -31,24 +35,22 @@ class Client
     -string street
     -string city
 }
- 
-class Course
-{
-    -string name
-    -date start_date
-    -date end_date
+
+class User{
+    - int idUser
+    - string login
+    - string password
 } 
 
 
-TrainingCourse <|-- Student 
+Order "*" <--> "1" Client : benefits >
 
-TrainingCourse <|-- Teacher
+User "1" <--> "*" Order : purchases < 
 
-TrainingCourse "1" --> "1" Client : lives >
+Order "1" <--> "1..*" OrderLine : takes >
 
-Student "0..n" <--> "0..n" Course : takes >
+OrderLine "1" <--> "*" TrainingCourse : includes >
 
-Course "1..n" <--u> "1" Teacher : teaches < 
 
 
 @enduml
