@@ -1,11 +1,13 @@
 @startuml School
 
-abstract class Person
+abstract class TrainingCourse
 {
-
-    -string first_name
-    -string last_name
-    -integer age
+    -int idCourse
+    -string nameCourse
+    -string descriptionCourse
+    -string TrainingFormat
+    -int duration
+    -BigDecimal price
 }
 
 class Teacher 
@@ -18,11 +20,16 @@ class Student
     -integer student_nbr
 }
 
-class Address
+class Client
 {
+    -int idCourse
+	-string firstName
+    -string lastName
+    -string email
+    -string phoneNumber
+    -string address
     -string street
     -string city
-    -integer postal_code
 }
  
 class Course
@@ -33,11 +40,11 @@ class Course
 } 
 
 
-Person <|-- Student 
+TrainingCourse <|-- Student 
 
-Person <|-- Teacher
+TrainingCourse <|-- Teacher
 
-Person "1" --> "1" Address : lives >
+TrainingCourse "1" --> "1" Client : lives >
 
 Student "0..n" <--> "0..n" Course : takes >
 
