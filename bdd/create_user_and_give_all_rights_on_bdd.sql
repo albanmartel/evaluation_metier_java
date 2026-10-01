@@ -1,12 +1,12 @@
 -- ------------------------------------------------------------------------------
 -- - Créer l'utilisateur                                                     ---
 -- ------------------------------------------------------------------------------
-CREATE USER 'nom_utilisateur'@'localhost' IDENTIFIED BY 'mot_de_passe';
+CREATE USER 'javaluation'@'localhost' IDENTIFIED BY 'mot_de_passe';
 
 -- ------------------------------------------------------------------------------
 -- - Lui donner tous les droits sur une base de données particulière          ---
 -- ------------------------------------------------------------------------------
-GRANT ALL PRIVILEGES ON nom_de_la_base.* TO 'nom_utilisateur'@'localhost';
+GRANT ALL PRIVILEGES ON nom_de_la_base.* TO 'javaluation@'localhost';
 
 -- ------------------------------------------------------------------------------
 -- - Appliquer les modifications                                              ---
