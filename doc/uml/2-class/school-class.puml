@@ -22,7 +22,7 @@ class Student
 
 class Client
 {
-    -int idCourse
+    -int idClient
 	-string firstName
     -string lastName
     -string email
