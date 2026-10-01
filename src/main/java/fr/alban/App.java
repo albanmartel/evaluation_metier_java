@@ -12,15 +12,6 @@ import java.util.ArrayList;
 public class App {
 
     /**
-     * Méthode vestige de l'ancienne application "HelloWord
-     *
-     * @param args le tableau de String envoyé par le main
-     */
-    public static void helloWord(String[] args) {
-        out.println("Hello World!");
-    }
-
-    /**
      * Méthode pour tester la connection à la base de données
      */
     public static void verifyDataBaseConnection() {
