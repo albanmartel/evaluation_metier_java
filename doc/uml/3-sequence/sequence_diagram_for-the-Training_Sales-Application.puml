@@ -31,7 +31,6 @@ else Scénario Nominal : Compte créé
     V -> S: Saisir nom d'utilisateur et mot de passe
     S -> S: Créer et activer le compte utilisateur
     S --> V: Compte actif (Commande en attente des infos bénéficiaire)
-
-    end
+    
 end
 @enduml
