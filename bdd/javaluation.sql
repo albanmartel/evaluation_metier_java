@@ -12,6 +12,7 @@ CREATE TABLE client_training_course (
 );
 
 CREATE TABLE order_line (
+  id_order_line int(11) NOT NULL,
   id_order int(11) NOT NULL,
   id_course int(11) NOT NULL,
   unit_price decimal(10,2) NOT NULL,
@@ -59,8 +60,10 @@ ALTER TABLE client_training_course
   ADD PRIMARY KEY (id_client);
 
 ALTER TABLE order_line
-  ADD PRIMARY KEY (id_order,id_course),
-  ADD KEY id_course (id_course);
+  ADD PRIMARY KEY (id_order_line),
+  ADD KEY id_order_line (id_order_line),
+  ADD KEY order_line_ibfk_1 (id_order),
+  ADD KEY order_line_ibfk_2 (id_course);
 
 ALTER TABLE order_training_course
   ADD PRIMARY KEY (id_order),
@@ -77,6 +80,9 @@ ALTER TABLE user_training_course
 
 ALTER TABLE client_training_course
   MODIFY id_client int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE order_line
+  MODIFY id_order_line int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE order_training_course
   MODIFY id_order int(11) NOT NULL AUTO_INCREMENT;
