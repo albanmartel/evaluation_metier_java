@@ -31,6 +31,18 @@ else Scénario Nominal : Compte créé
     V -> S: Saisir nom d'utilisateur et mot de passe
     S -> S: Créer et activer le compte utilisateur
     S --> V: Compte actif (Commande en attente des infos bénéficiaire)
-    
+
+    end
+
+    == 4. Gestion du Client / Bénéficiaire de la formation ==
+    alt Scénario Alternatif 2 : Aucun bénéficiaire ajouté
+        V -> S: Quitter / Ne pas renseigner le bénéficiaire
+        S -> S: Marquer la commande comme abandonnée
+        note right of S
+          La commande est abandonnée car aucun
+          client/bénéficiaire n'a été rattaché.
+        end note
+        S --> V: Commande non finalisée
+
 end
 @enduml
