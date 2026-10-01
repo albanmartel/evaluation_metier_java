@@ -21,4 +21,10 @@ S --> V: Panier mis à jour
 == 3. Tentative de Commande & Compte ==
 V -> S: Valider le panier / Passer la commande
 S --> V: Demander la création d'un compte (Non authentifié)
+
+alt Scénario Alternatif 1 : Abandon lors de la création de compte
+    V -> S: Annuler / Refuser la création de compte
+    S -> S: Abandonner la commande
+    S --> V: Commande annulée (Pas de compte utilisateur)
+    
 @enduml
