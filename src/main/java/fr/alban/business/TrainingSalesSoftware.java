@@ -1,8 +1,9 @@
 package fr.alban.business;
 
-import fr.alban.dao.OrderDao;
 import fr.alban.dao.TrainingCourseDao;
 import fr.alban.models.*;
+
+import static java.lang.System.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +12,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static java.lang.System.out;
 
 /**
  * Cette classe est la classe métier de l'application vente de formation.
@@ -194,6 +194,37 @@ public class TrainingSalesSoftware {
         }
 
         return resultats;
+    }
+
+        /**
+     * La méthode permet de faire 2 recherches combinées par nom (exemple : java) et par format de formation ("Distantiel" ou "Présentiel").
+     * @param searchString la chaîne de recherche
+     * @param courseFormat le format de la formation
+     * @param listOfTrainingCourses la liste pré restreinte de formation.
+     */
+    public ArrayList<TrainingCourse> filterTrainingCourseListe(String searchString, String courseFormat, List<TrainingCourse> listOfTrainingCourses){
+        ArrayList<TrainingCourse> filterliste = searchByName(searchString, listOfTrainingCourses);
+
+        /* Toutes les conditions suivantes entrainent le retour d'un tableau vide */
+
+        if (searchString == null || searchString.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        if (courseFormat == null || courseFormat.trim().isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        boolean isOnSideTraining = courseFormat.equals("Présentiel");
+        boolean isDistanceTraining = courseFormat.equals("Distantiel");
+
+        if (isOnSideTraining && isDistanceTraining) {
+            return new ArrayList<>();
+        } else if (!isOnSideTraining && !isDistanceTraining) {
+            return new ArrayList<>();
+        }
+
+        return filterByTrainingCourseFormat(courseFormat, filterliste);
     }
 
     /**
