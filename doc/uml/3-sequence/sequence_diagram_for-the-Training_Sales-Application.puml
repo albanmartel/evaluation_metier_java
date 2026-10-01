@@ -26,5 +26,12 @@ alt Scénario Alternatif 1 : Abandon lors de la création de compte
     V -> S: Annuler / Refuser la création de compte
     S -> S: Abandonner la commande
     S --> V: Commande annulée (Pas de compte utilisateur)
-    
+
+else Scénario Nominal : Compte créé
+    V -> S: Saisir nom d'utilisateur et mot de passe
+    S -> S: Créer et activer le compte utilisateur
+    S --> V: Compte actif (Commande en attente des infos bénéficiaire)
+
+    end
+end
 @enduml
