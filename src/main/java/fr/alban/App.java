@@ -76,6 +76,34 @@ public class App {
         trainingSalesSoftware.displayFormatArray(trainingSalesSoftware.getCourseList());
     }
 
+    /**
+     * Méthode pour afficher tous les cours correspondant à une recherche
+     * @param trainingSalesSoftware instance de la classe business apporté à la méthode
+     */
+    private static void secondChoice(TrainingSalesSoftware trainingSalesSoftware) {
+        out.println("\nFaire une recherche par nom \"Java\"\n");
+        Scanner scanner = new Scanner(in);
+        String searchTerm = "";
+
+        boolean isValid = false;
+
+        while (!isValid) {
+            out.print("Entrez un seul mot : ");
+            String userImput= scanner.nextLine();
+
+            // Vérifie si la userInput est vide ou contient des espaces internes
+            if (userImput.isEmpty() || userImput.contains(" ")) {
+                out.println("Erreur : votre saisie dépasse un mot ou est vide. Recommencez.\n");
+            } else {
+                searchTerm = userImput;
+                isValid = true;
+            }
+        }
+
+        searchTrainingCourseListe(searchTerm, trainingSalesSoftware);
+        scanner.close();
+    }
+
     public static void main(String[] args) {
         out.println();
         verifyDataBaseConnection();
