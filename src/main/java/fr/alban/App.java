@@ -67,6 +67,15 @@ public class App {
         trainingSalesSoftware.displayFormatArray(filterliste);
     }
 
+    /**
+     * Méthode pour afficher tous les cours dans le menu
+     * @param trainingSalesSoftware instance de la classe business apporté à la méthode
+     */
+    private static void firstChoice(TrainingSalesSoftware trainingSalesSoftware) {
+        out.println("\nAfficher toute les formations\n");
+        trainingSalesSoftware.displayFormatArray(trainingSalesSoftware.getCourseList());
+    }
+
     public static void main(String[] args) {
         out.println();
         verifyDataBaseConnection();
