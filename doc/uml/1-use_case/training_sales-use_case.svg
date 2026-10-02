@@ -1,1 +1,140 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" data-diagram-type="DESCRIPTION" style="width:848px;height:467px;background:#FFFFFF;" width="848px" height="467px" viewBox="0 0 848 467" zoomAndPan="magnify" preserveAspectRatio="none" contentStyleType="text/css"><?plantuml 1.2026.8?><defs/><g font-family="sans-serif" lengthAdjust="spacing"><!--cluster Application Vente de Formations--><g class="cluster" data-qualified-name="Application Vente de Formations" id="ent0004" data-source-line="11"><rect x="329" y="7" width="505" height="446" fill="none" style="stroke:#181818;stroke-width:1;" rx="2.5" ry="2.5"/><text x="472.21" y="23.533" fill="#000" font-size="14" textLength="218.579" font-weight="700">Application Vente de Formations</text></g><!--entity UC_Liste--><g class="entity" data-qualified-name="Application Vente de Formations.UC_Liste" id="ent0005" data-source-line="13"><ellipse cx="426.16" cy="253.132" rx="81.16" ry="18.632" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="361.577" y="258.437" fill="#000" font-size="14" textLength="129.165">Consulter formations</text></g><g class="entity" data-qualified-name="Application Vente de Formations.GMN6" id="ent0007" data-source-line="15"><path d="M587.5,202.5 L587.5,241.12 L505.29,249.15 L587.5,249.12 L587.5,277.906 A0,0 0 0 0 587.5,277.906 L797.057,277.906 A0,0 0 0 0 797.057,277.906 L797.057,212.5 L787.057,202.5 L587.5,202.5 A0,0 0 0 0 587.5,202.5" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><path d="M787.057,202.5 L787.057,212.5 L797.057,212.5 L787.057,202.5" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><text x="593.5" y="220.995" fill="#000" font-size="13" textLength="64.321">Regroupe :</text><text x="593.5" y="237.347" fill="#000" font-size="13" textLength="100.452">- Affichage global</text><text x="593.5" y="253.698" fill="#000" font-size="13" textLength="139.439">- Recherche par mot-clé</text><text x="593.5" y="270.05" fill="#000" font-size="13" textLength="188.557">- Filtrage (Présentiel / Distanciel)</text></g><!--entity UC_Panier--><g class="entity" data-qualified-name="Application Vente de Formations.UC_Panier" id="ent0009" data-source-line="21"><ellipse cx="426.073" cy="331.952" rx="58.573" ry="15.452" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="386.777" y="337.256" fill="#000" font-size="14" textLength="78.593">Gérer panier</text></g><g class="entity" data-qualified-name="Application Vente de Formations.GMN10" id="ent0011" data-source-line="23"><path d="M567,313 L567,350.75 L476.44,340.04 L567,358.75 L567,437.461 A0,0 0 0 0 567,437.461 L818.496,437.461 A0,0 0 0 0 818.496,437.461 L818.496,323 L808.496,313 L567,313 A0,0 0 0 0 567,313" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><path d="M808.496,313 L808.496,323 L818.496,323 L808.496,313" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><text x="573" y="331.495" fill="#000" font-size="13" textLength="64.321">Regroupe :</text><text x="573" y="347.847" fill="#000" font-size="13" textLength="135.11">- Créer / Vider le panier</text><text x="573" y="364.198" fill="#000" font-size="13" textLength="182.076">- Ajouter / Retirer une formation</text><text x="573" y="380.55" fill="#000" font-size="13"> </text><text x="573" y="396.901" fill="#000" font-size="13" textLength="41.19">Règle :</text><text x="573" y="413.253" fill="#000" font-size="13" textLength="176.319">- Un panier valide doit contenir</text><text x="580.224" y="429.604" fill="#000" font-size="13" textLength="223.272">au moins 1 formation pour commander</text></g><!--entity UC_Creer--><g class="entity" data-qualified-name="Application Vente de Formations.UC_Creer" id="ent0013" data-source-line="32"><ellipse cx="425.967" cy="400.952" rx="62.967" ry="15.452" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="383.564" y="406.256" fill="#000" font-size="14" textLength="84.807">Créer compte</text></g><!--entity UC_Authentification--><g class="entity" data-qualified-name="Application Vente de Formations.UC_Authentification" id="ent0014" data-source-line="33"><ellipse cx="425.973" cy="172.952" rx="60.473" ry="15.452" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="385.333" y="178.256" fill="#000" font-size="14" textLength="81.279">S'authentifier</text></g><!--entity UC_Commande--><g class="entity" data-qualified-name="Application Vente de Formations.UC_Commande" id="ent0015" data-source-line="35"><ellipse cx="426.101" cy="105.12" rx="76.101" ry="17.62" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><text x="367.743" y="110.425" fill="#000" font-size="14" textLength="116.717">Passer commande</text></g><g class="entity" data-qualified-name="Application Vente de Formations.GMN16" id="ent0017" data-source-line="37"><path d="M575,43 L575,101 L502.09,105 L575,109 L575,167.461 A0,0 0 0 0 575,167.461 L809.903,167.461 A0,0 0 0 0 809.903,167.461 L809.903,53 L799.903,43 L575,43 A0,0 0 0 0 575,43" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><path d="M799.903,43 L799.903,53 L809.903,53 L799.903,43" style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/><text x="581" y="61.495" fill="#000" font-size="13" textLength="64.321">Regroupe :</text><text x="581" y="77.847" fill="#000" font-size="13" textLength="122.859">- Validation du panier</text><text x="581" y="94.198" fill="#000" font-size="13" textLength="159.701">- Ajout du client bénéficiaire</text><text x="581" y="110.55" fill="#000" font-size="13"> </text><text x="581" y="126.901" fill="#000" font-size="13" textLength="41.19">Règle :</text><text x="581" y="143.253" fill="#000" font-size="13" textLength="159.688">- Toute commande doit être</text><text x="588.224" y="159.604" fill="#000" font-size="13" textLength="206.68">obligatoirement associée à un client</text></g><!--entity visiteur--><g class="entity" data-qualified-name="visiteur" id="ent0001" data-source-line="4"><ellipse cx="53.858" cy="256" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M53.858,264 L53.858,291 M40.858,272 L66.858,272 M53.858,291 L40.858,306 M53.858,291 L66.858,306" style="stroke:#181818;stroke-width:0.5;" fill="none"/><text x="6" y="322.033" fill="#000" font-size="14" textLength="46.683">Visiteur</text><text x="6" y="339.643" fill="#000" font-size="14" textLength="95.717">(Non connecté)</text></g><!--entity utilisateur--><g class="entity" data-qualified-name="utilisateur" id="ent0002" data-source-line="5"><ellipse cx="223.476" cy="136.5" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/><path d="M223.476,144.5 L223.476,171.5 M210.476,152.5 L236.476,152.5 M223.476,171.5 L210.476,186.5 M223.476,171.5 L236.476,186.5" style="stroke:#181818;stroke-width:0.5;" fill="none"/><text x="162" y="202.533" fill="#000" font-size="14" textLength="122.951">Utilisateur connecté</text></g><!--reverse link visiteur to utilisateur--><g class="link" data-entity-1="ent0001" data-entity-2="ent0002" id="lnk3" data-source-line="8" data-link-type="extension"><path d="M116.402,248.071 C137.982,231.581 149.3,222.94 171.35,206.09" style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-backto-utilisateur"/><polygon points="102.1,259,120.045,252.839,112.759,243.304,102.1,259" fill="none" style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/></g><!--link visiteur to UC_Liste--><g class="link" data-entity-1="ent0001" data-entity-2="ent0005" id="lnk19" data-source-line="49" data-link-type="association"><path d="M102.24,289.64 C165.65,282.44 278.89,269.59 352.96,261.18" style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-UC_Liste"/></g><!--link visiteur to UC_Panier--><g class="link" data-entity-1="ent0001" data-entity-2="ent0009" id="lnk20" data-source-line="50" data-link-type="association"><path d="M102.24,299.72 C171.01,306.6 298.37,319.34 370.85,326.58" style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-UC_Panier"/></g><!--link visiteur to UC_Creer--><g class="link" data-entity-1="ent0001" data-entity-2="ent0013" id="lnk21" data-source-line="51" data-link-type="association"><path d="M102.13,308.7 C120.77,314.11 142.39,320.36 162,326 C240.49,348.56 332.23,374.66 383.99,389.36" style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-UC_Creer"/></g><!--link utilisateur to UC_Authentification--><g class="link" data-entity-1="ent0002" data-entity-2="ent0014" id="lnk22" data-source-line="53" data-link-type="association"><path d="M285.2,168.82 C310.79,169.58 340.47,170.47 365.88,171.23" style="stroke:#181818;stroke-width:1;" fill="none" id="utilisateur-UC_Authentification"/></g><!--link utilisateur to UC_Commande--><g class="link" data-entity-1="ent0002" data-entity-2="ent0015" id="lnk23" data-source-line="54" data-link-type="association"><path d="M285.2,148.23 C315.63,138.82 351.85,127.62 379.79,118.98" style="stroke:#181818;stroke-width:1;" fill="none" id="utilisateur-UC_Commande"/></g><?plantuml-src TLJBRjim4BphAnQ-A3a8Hgz1K41GaiA0aHf-dGeKDBMIMT2aG56-jFsN7gl-XdwiI-hfH3aOCdTdPuT3BYLc5gm68_ApXLGOv5Pe5GJB4A8eWZZPFn-sE_y_N0QCMsrWSHIbi5YPR-hkLIlWMYcgQ-hx1R0IhbssHn-iaA9aBZH2FR8QCq4GGYn5hl22oi8LZHMSINY0lXcWWZEhRD3pm-ClKdN34JZzJEKIOH4NXIGAjnqu4YT2Yl2YpSM7oWNy30A0gaJEIe8d5AkaHGFP14CY3ydtjIWj4bXfOccjqjaq0R35tEYgG7ZmIt8komG_inmXb_h4P1VU8Z-ZeHyKpC15suZBfkwIBq9QuqhkDgQfIn8jKC8IdgWDKvmMzuH4bNebD_A_DBKXxGLJ0aslU-DNSyA7p8poX7eJrPASJ-ahiMFjD_P3LzRdjsY5Qref74tpg9Qu-UiEegSzg8u7hamICwHQM7SXB2fXsX80Lf4fGfNmQQI4GlkhSxambNeTinPqkWbNMEmjI0pwYW6r2-aEdPsrsSIfU8YrD-Q6UCFA4aS10tMtdlDtafjn-EWCQBUMLZFkkYYNmWt2gQbLKvCimSZh3ytTkpCP5BRMDl-imTvNVQBXObOJYHymsfBcWWo3vWyTODTkQktluH7OFg_Z_Uhhwsvu3XwZw3CayGwUmiD-jLxjVDw1wP4O1vHgXo5v4-mku9jeUrh1PAQxnBlpUG_fBVyF?></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+     data-diagram-type="DESCRIPTION" style="width:848px;height:484px;background:#FFFFFF;" width="848px" height="484px"
+     viewBox="0 0 848 484" zoomAndPan="magnify" preserveAspectRatio="none"
+     contentStyleType="text/css"><?plantuml 1.2026.8?>
+    <defs/>
+    <g font-family="sans-serif" lengthAdjust="spacing"><!--cluster Application Vente de Formations-->
+        <g class="cluster" data-qualified-name="Application Vente de Formations" id="ent0004" data-source-line="11">
+            <rect x="329" y="7" width="505" height="463" fill="none" style="stroke:#181818;stroke-width:1;" rx="2.5"
+                  ry="2.5"/>
+            <text x="472.21" y="23.533" fill="#000" font-size="14" textLength="218.579" font-weight="700">Application
+                Vente de Formations
+            </text>
+        </g><!--entity UC_Liste-->
+        <g class="entity" data-qualified-name="Application Vente de Formations.UC_Liste" id="ent0005"
+           data-source-line="13">
+            <ellipse cx="426.16" cy="229.132" rx="81.16" ry="18.632" fill="#F1F1F1"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text x="361.577" y="234.437" fill="#000" font-size="14" textLength="129.165">Consulter formations</text>
+        </g>
+        <g class="entity" data-qualified-name="Application Vente de Formations.GMN6" id="ent0007" data-source-line="15">
+            <path d="M587.5,219.5 L587.5,241.95 L499.98,236.73 L587.5,249.95 L587.5,294.906 A0,0 0 0 0 587.5,294.906 L797.057,294.906 A0,0 0 0 0 797.057,294.906 L797.057,229.5 L787.057,219.5 L587.5,219.5 A0,0 0 0 0 587.5,219.5"
+                  style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/>
+            <path d="M787.057,219.5 L787.057,229.5 L797.057,229.5 L787.057,219.5"
+                  style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/>
+            <text x="593.5" y="237.995" fill="#000" font-size="13" textLength="64.321">Regroupe :</text>
+            <text x="593.5" y="254.347" fill="#000" font-size="13" textLength="100.452">- Affichage global</text>
+            <text x="593.5" y="270.698" fill="#000" font-size="13" textLength="139.439">- Recherche par mot-clé</text>
+            <text x="593.5" y="287.05" fill="#000" font-size="13" textLength="188.557">- Filtrage (Présentiel /
+                Distanciel)
+            </text>
+        </g><!--entity UC_Panier-->
+        <g class="entity" data-qualified-name="Application Vente de Formations.UC_Panier" id="ent0009"
+           data-source-line="21">
+            <ellipse cx="426.073" cy="300.952" rx="58.573" ry="15.452" fill="#F1F1F1"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text x="386.777" y="306.256" fill="#000" font-size="14" textLength="78.593">Gérer panier</text>
+        </g>
+        <g class="entity" data-qualified-name="Application Vente de Formations.GMN10" id="ent0011"
+           data-source-line="23">
+            <path d="M567,330 L567,345.12 L462.4,313.18 L567,353.12 L567,454.461 A0,0 0 0 0 567,454.461 L818.496,454.461 A0,0 0 0 0 818.496,454.461 L818.496,340 L808.496,330 L567,330 A0,0 0 0 0 567,330"
+                  style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/>
+            <path d="M808.496,330 L808.496,340 L818.496,340 L808.496,330" style="stroke:#181818;stroke-width:0.5;"
+                  fill="#FEFFDD"/>
+            <text x="573" y="348.495" fill="#000" font-size="13" textLength="64.321">Regroupe :</text>
+            <text x="573" y="364.847" fill="#000" font-size="13" textLength="135.11">- Créer / Vider le panier</text>
+            <text x="573" y="381.198" fill="#000" font-size="13" textLength="182.076">- Ajouter / Retirer une
+                formation
+            </text>
+            <text x="573" y="397.55" fill="#000" font-size="13"> </text>
+            <text x="573" y="413.901" fill="#000" font-size="13" textLength="41.19">Règle :</text>
+            <text x="573" y="430.253" fill="#000" font-size="13" textLength="176.319">- Un panier valide doit contenir
+            </text>
+            <text x="580.224" y="446.604" fill="#000" font-size="13" textLength="223.272">au moins 1 formation pour
+                commander
+            </text>
+        </g><!--entity UC_Creer-->
+        <g class="entity" data-qualified-name="Application Vente de Formations.UC_Creer" id="ent0013"
+           data-source-line="32">
+            <ellipse cx="425.967" cy="369.952" rx="62.967" ry="15.452" fill="#F1F1F1"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text x="383.564" y="375.256" fill="#000" font-size="14" textLength="84.807">Créer compte</text>
+        </g><!--entity UC_Authentification-->
+        <g class="entity" data-qualified-name="Application Vente de Formations.UC_Authentification" id="ent0014"
+           data-source-line="33">
+            <ellipse cx="425.973" cy="437.952" rx="60.473" ry="15.452" fill="#F1F1F1"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text x="385.333" y="443.256" fill="#000" font-size="14" textLength="81.279">S'authentifier</text>
+        </g><!--entity UC_Commande-->
+        <g class="entity" data-qualified-name="Application Vente de Formations.UC_Commande" id="ent0015"
+           data-source-line="35">
+            <ellipse cx="426.101" cy="120.12" rx="76.101" ry="17.62" fill="#F1F1F1"
+                     style="stroke:#181818;stroke-width:0.5;"/>
+            <text x="367.743" y="125.425" fill="#000" font-size="14" textLength="116.717">Passer commande</text>
+        </g>
+        <g class="entity" data-qualified-name="Application Vente de Formations.GMN16" id="ent0017"
+           data-source-line="37">
+            <path d="M575,43.5 L575,112.64 L501.73,118.3 L575,120.64 L575,184.313 A0,0 0 0 0 575,184.313 L809.903,184.313 A0,0 0 0 0 809.903,184.313 L809.903,53.5 L799.903,43.5 L575,43.5 A0,0 0 0 0 575,43.5"
+                  style="stroke:#181818;stroke-width:0.5;" fill="#FEFFDD"/>
+            <path d="M799.903,43.5 L799.903,53.5 L809.903,53.5 L799.903,43.5" style="stroke:#181818;stroke-width:0.5;"
+                  fill="#FEFFDD"/>
+            <text x="581" y="61.995" fill="#000" font-size="13" textLength="64.321">Regroupe :</text>
+            <text x="581" y="78.347" fill="#000" font-size="13" textLength="122.859">- Validation du panier</text>
+            <text x="581" y="94.698" fill="#000" font-size="13" textLength="159.701">- Ajout du client bénéficiaire
+            </text>
+            <text x="581" y="111.05" fill="#000" font-size="13" textLength="41.901">- Payer</text>
+            <text x="581" y="127.401" fill="#000" font-size="13"> </text>
+            <text x="581" y="143.753" fill="#000" font-size="13" textLength="41.19">Règle :</text>
+            <text x="581" y="160.104" fill="#000" font-size="13" textLength="159.688">- Toute commande doit être</text>
+            <text x="588.224" y="176.456" fill="#000" font-size="13" textLength="206.68">obligatoirement associée à un
+                client
+            </text>
+        </g><!--entity visiteur-->
+        <g class="entity" data-qualified-name="visiteur" id="ent0001" data-source-line="4">
+            <ellipse cx="53.858" cy="260" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M53.858,268 L53.858,295 M40.858,276 L66.858,276 M53.858,295 L40.858,310 M53.858,295 L66.858,310"
+                  style="stroke:#181818;stroke-width:0.5;" fill="none"/>
+            <text x="6" y="326.033" fill="#000" font-size="14" textLength="46.683">Visiteur</text>
+            <text x="6" y="343.643" fill="#000" font-size="14" textLength="95.717">(Non connecté)</text>
+        </g><!--entity utilisateur-->
+        <g class="entity" data-qualified-name="utilisateur" id="ent0002" data-source-line="5">
+            <ellipse cx="223.476" cy="94.5" rx="8" ry="8" fill="#F1F1F1" style="stroke:#181818;stroke-width:0.5;"/>
+            <path d="M223.476,102.5 L223.476,129.5 M210.476,110.5 L236.476,110.5 M223.476,129.5 L210.476,144.5 M223.476,129.5 L236.476,144.5"
+                  style="stroke:#181818;stroke-width:0.5;" fill="none"/>
+            <text x="162" y="160.533" fill="#000" font-size="14" textLength="122.951">Utilisateur connecté</text>
+        </g><!--reverse link visiteur to utilisateur-->
+        <g class="link" data-entity-1="ent0001" data-entity-2="ent0002" id="lnk3" data-source-line="8"
+           data-link-type="extension">
+            <path d="M113.254,238.483 C139.604,211.113 159.83,190.11 184.7,164.27"
+                  style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-backto-utilisateur"/>
+            <polygon points="100.77,251.45,117.576,242.644,108.932,234.321,100.77,251.45" fill="none"
+                     style="stroke:#181818;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:10;"/>
+        </g><!--link visiteur to UC_Liste-->
+        <g class="link" data-entity-1="ent0001" data-entity-2="ent0005" id="lnk19" data-source-line="50"
+           data-link-type="association">
+            <path d="M102.01,287.37 C120.63,282.94 142.27,277.99 162,274 C228.52,260.55 305.03,247.76 358.32,239.27"
+                  style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-UC_Liste"/>
+        </g><!--link visiteur to UC_Panier-->
+        <g class="link" data-entity-1="ent0001" data-entity-2="ent0009" id="lnk20" data-source-line="51"
+           data-link-type="association">
+            <path d="M102.24,299.26 C169.94,299.62 294.42,300.29 367.42,300.69" style="stroke:#181818;stroke-width:1;"
+                  fill="none" id="visiteur-UC_Panier"/>
+        </g><!--link visiteur to UC_Creer-->
+        <g class="link" data-entity-1="ent0001" data-entity-2="ent0013" id="lnk21" data-source-line="52"
+           data-link-type="association">
+            <path d="M102.24,308.06 C172.57,321.56 304.18,346.82 375.69,360.54" style="stroke:#181818;stroke-width:1;"
+                  fill="none" id="visiteur-UC_Creer"/>
+        </g><!--link visiteur to UC_Authentification-->
+        <g class="link" data-entity-1="ent0001" data-entity-2="ent0014" id="lnk22" data-source-line="53"
+           data-link-type="association">
+            <path d="M102.06,323.54 C120.5,332.72 142,342.88 162,351 C239.3,382.41 332.63,411.2 384.75,426.5"
+                  style="stroke:#181818;stroke-width:1;" fill="none" id="visiteur-UC_Authentification"/>
+        </g><!--link utilisateur to UC_Commande-->
+        <g class="link" data-entity-1="ent0002" data-entity-2="ent0015" id="lnk23" data-source-line="55"
+           data-link-type="association">
+            <path d="M285.2,123.49 C305.72,122.97 328.86,122.4 350.33,121.86" style="stroke:#181818;stroke-width:1;"
+                  fill="none" id="utilisateur-UC_Commande"/>
+        </g>
+        <?plantuml-src RLHDYzim4BtxLmovUFTWGg_BKZ3UtH88sv2lKw4ezjXHKIGZou7Izh_qMFTl-8zr9CiVINq8ZcRUl7bwqaXWRi0eqBmu6yYunjHm9ODW6K8KHH0d-zV3TkV-Xyk0fKPfM1nvnGtM-ejyU5SIKYKbrRNDum9O1LUVxT47mmMlc0sDK8UinqmGX10BNaYye3HmHMruoWGyGTyCKCAPrIRe-U7v9wcwuGYiVYOBWR28or8GXTqE78aJ8KDuK_hYGjK2VWG1G5rXoYg29nIhXK4D-GH38W_9rpMl319OAcBfh5BvD06mnKAhkaHuSajoBizvUcO5GY7KYGaVtc9wHaq_A9c6Yp9HAjh69z-uCDgMF6nqsrGacgE09RnG6oPJMZmI4cNcbDp8_zGschINJ7BKlUwDMyq97p8poXFgJLHBSZwZhq3Fsc_icwgDos_HSDkqbZYQvb0TSVl77aHFUv2U1wvC43DaYXjx8GnAhhiI05QJALnMy66aX5AvgtEvC9av7RCMUDs4Amts5YGQNSM0seLqXyxMsdpYL3p4kXjpGxnXLOMZW87Qh-VydUHc73vQ0xgjPVMCkpQQ2cu7uTGsicr85cVajGTjs7TVC6VqtfxFeBQpkVrhDFOUgnCD6ZEA2DsmqVPKoiayQ7_JOVhMKvj_3G_2zdKTxrUVttV3q_0SHHyXYNVm4Xxsg_Lgv_8MJ0_6EAnKEmpCNT1VnhjeTt9tmV_FQJB_VQ7V-Jy0?>
+    </g>
+</svg>
