@@ -77,7 +77,8 @@ public class App {
     }
 
     /**
-     * Méthode pour afficher tous les cours correspondant à une recherche
+     * Méthode pour afficher tous les cours correspondant à une recherche saisie
+     * par l'utilisateur.
      * @param trainingSalesSoftware instance de la classe business apporté à la méthode
      */
     private static void secondChoice(TrainingSalesSoftware trainingSalesSoftware) {
