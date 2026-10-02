@@ -38,6 +38,7 @@ rectangle "Application Vente de Formations" {
     Regroupe :
     - Validation du panier
     - Ajout du client bénéficiaire
+    - Payer
     
     Règle :
     - Toute commande doit être 
@@ -50,7 +51,7 @@ rectangle "Application Vente de Formations" {
 visiteur -- UC_Liste
 visiteur -- UC_Panier
 visiteur -- UC_Creer
+visiteur -- UC_Authentification
 
-utilisateur -- UC_Authentification
 utilisateur -- UC_Commande
 @enduml
