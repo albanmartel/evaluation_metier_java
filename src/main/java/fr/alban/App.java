@@ -105,6 +105,45 @@ public class App {
         scanner.close();
     }
 
+    /**
+     * Méthode pour afficher un menu et proposer des choix à l'utilisateur.
+     */
+    public static void Menu() {
+        /* Vérifier la connexion à la base de données */
+        verifyDataBaseConnection();
+
+        /* utiliser la classe business */
+        TrainingSalesSoftware trainingSalesSoftware = new TrainingSalesSoftware();
+        /* Chargement de toutes les données de Base de données en mémoire par instantiation des classes modèles */
+        trainingSalesSoftware.init();
+
+        out.println("\n=== Menu Principal ===");
+        out.println("1. Afficher toutes les formations");
+        out.println("2. Rechercher des formations par nom");
+        out.println("3. Filtrer les formations par type de formation: \"Distantiel\" ou \"Présentiel\"");
+        out.println("4. Faire une recherche combinée par nom et type de formation");
+        out.println("5. Exit");
+
+
+        String choice = new Scanner(in).next();
+
+
+        switch (choice) {
+            case "1":
+                firstChoice(trainingSalesSoftware);
+                break;
+
+            case "2":
+                secondChoice(trainingSalesSoftware);
+                break;
+
+            default:
+                System.out.println("Choix incorrect");
+                break;
+        }
+    }
+
+
     public static void main(String[] args) {
         out.println();
         verifyDataBaseConnection();
