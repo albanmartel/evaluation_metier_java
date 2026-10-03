@@ -49,8 +49,8 @@ class Beneficiary{
 
 class User{
     - Int idUser : Integer
-    - string login : 
-    - string password
+    - login : String
+    - password : String
     + authenticate()
     + purchases()
     + logIn()
