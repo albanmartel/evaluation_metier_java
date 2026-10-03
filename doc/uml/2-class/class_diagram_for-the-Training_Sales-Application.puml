@@ -1,13 +1,13 @@
 @startuml TrainingSallesApplication
 left to right direction
 
-class TrainingCourse{
-    -int idCourse
-    -string nameCourse
-    -string descriptionCourse
-    -string TrainingFormat
-    -int duration
-    -double price
+class Course {
+    - idCourse : Integer
+    - nameCourse : String
+    - descriptionCourse : String
+    - trainingFormat : String
+    - duration : Integer
+    - price : Double
     + trainingCourseDictionnary()
     + searchByName()
     + filterByTrainingCourseFormat()
@@ -15,35 +15,41 @@ class TrainingCourse{
 
 }
 
-class Order{
-    -int idOrder
-    -dateTime orderDate
-    -int idClient
-    -int idUser
+class Order {
+    - dOrder : Integer
+    - orderDate : DateTime
+    + getTotalAmount() : Double
 }
 
 class OrderLine{
-    -int idOrderLine
-    -int idOrder
-    -int idCourse
-    -double unitPrice
-    -int quantity
+    - idOrderLine : Integer
+    - unitPrice : Double
 }
 
-class Client{
-    -int idClient
-	-string firstName
-    -string lastName
-    -string email
-    -string phoneNumber
-    -string address
-    -string street
-    -string city
+class Cart {
+    - listOfArticles : List<CartItem>
+    + addLine()
+    + removeLine()
+    + clear()
+    + getTotal() : Double
+}
+
+class CartItem {
+    - unitPrice : Double
+}
+
+class Beneficiary{
+    - idBeneficiary : Integer
+	- firstName : String
+    - lastName : String
+    - email : String
+    - phoneNumber : String
+    - address : String
 }
 
 class User{
-    - int idUser
-    - string login
+    - Int idUser : Integer
+    - string login : 
     - string password
     + authenticate()
     + purchases()
@@ -53,13 +59,42 @@ class User{
 } 
 
 
-Order "*" <--> "1" Client : benefits >
+' ================= RELATIONS =================
 
-User "1" <--> "*" Order : purchases < 
+'1. Un utilisateur passe une ou plusieurs commandes 
+User "1" -- "*" Order : place >
 
-Order "1" <--> "1..*" OrderLine : takes >
+/'
+2. Une ou plusieurs commandes concerne ou 
+concernent un bénéficiaire
+'/
+Order "*" -- "1" Beneficiary : concerns >
 
-OrderLine "1" <--> "*" TrainingCourse : includes >
+/'
+3. Une commande est composée de une à plusieurs lignes
+l'étoile (*) à côté  du -- qui se réprésente par un losange 
+signifie composition
+'/
+Order "1" *-- "1..*" OrderLine : consists >
 
+/'
+4. Une ou plusieurs lignes de commande correspond 
+ou correspondent à  vers 1 formation
+'/
+OrderLine "*" -- "1" Course : corresponds >
+
+/'
+5. Le panier contient 0 à plusieurs
+articles temporaires (Composition)
+l'étoile (*) à côté  du -- qui se réprésente par un losange 
+signifie composition : un panier est composé de plusieurs articles
+'/
+Cart "1" *-- "*" CartItem : contains >
+
+/'
+6. Un article ou plusieurs fait ou 
+font référence à une formation 
+'/
+CartItem "*" -- "1" Course : references >
 
 @enduml
